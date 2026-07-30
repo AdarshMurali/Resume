@@ -10,15 +10,15 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 ---
 
 ## Phase 0 — Discovery & content extraction
-- [ ] (A) Add source résumé PDF to `public/resume.pdf`
-- [ ] (CC) Extract facts from PDF into `src/content/*` first pass
-- [ ] (A) Confirm job titles, companies, dates, achievement bullets per role
-- [ ] (A) Provide GitHub username + repos to feature
-- [ ] (A) Provide Tableau Public URL + vizzes to showcase
-- [ ] (A) Decide Jira representation (narrative vs screenshots vs omit)
-- [ ] (A) Provide LinkedIn URL, certifications, contact email
-- [ ] (A) Accent color preference / headshot (optional)
-- [ ] (CC) Fill `docs/CONTENT.md` checklist; leave TODO(content) for gaps
+- [x] (A) Add source résumé PDF to `public/resume.pdf`
+- [x] (CC) Extract facts from PDF/Tableau workbook into `src/content/*` first pass
+- [x] (A) Confirm job titles, companies, dates, achievement bullets per role
+- [x] (A) Provide GitHub username + repos to feature (AdarshMurali/FinSight-AI)
+- [x] (A) Provide Tableau Public URL + vizzes to showcase
+- [ ] (A) Decide Jira representation (narrative vs screenshots vs omit) — default (omit, narrative-only) still in effect, not explicitly confirmed
+- [x] (A) Provide LinkedIn URL, certifications, contact email
+- [x] (A) Accent color preference (#e3ac14) / headshot (public/avatar.jpg)
+- [x] (CC) Fill `docs/CONTENT.md` checklist; leave TODO(content) for gaps
 
 ## Phase 1 — Scaffold & tooling
 - [ ] (CC) Init Vite + React + TS

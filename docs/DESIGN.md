@@ -29,9 +29,12 @@ Use HSL CSS variables so themes swap by changing the variable set, not classes.
 ```
 Neutrals (light):  background very-light warm gray; foreground near-black.
 Neutrals (dark):   background near-black (not pure #000); foreground off-white.
-Accent:            ONE color — pick during Phase 2 with Adarsh (default: a
-                   confident indigo/teal). Provide accent, accent-foreground,
-                   and a subtle accent-muted for backgrounds.
+Accent:            #e3ac14 (gold) — confirmed 2026-07-30, carried over from
+                   Adarsh's existing Tableau Public visual resume for brand
+                   continuity. Provide accent, accent-foreground, and a
+                   subtle accent-muted for backgrounds; verify AA contrast
+                   against both light and dark neutrals in Phase 2 — gold on
+                   white in particular will need a darkened variant for text.
 Semantic:          border, muted, muted-foreground, card, card-foreground,
                    ring (focus). Mirror shadcn's token names for drop-in use.
 ```

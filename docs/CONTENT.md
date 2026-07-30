@@ -85,26 +85,34 @@ re-exports them. `scripts/build-knowledge.ts` serializes all of it to Markdown.
 ## 2. Content checklist (fill these — mark [x] when done)
 
 Profile
-- [ ] Full name, headline, one-line value prop
-- [ ] 2–3 sentence professional summary (first person)
-- [ ] Location (city/region — optional)
-- [ ] Stat row values (years of experience, # domains, core tools, # certs)
-- [ ] Headshot (optional) → `public/`
+- [x] Full name, headline, one-line value prop — `src/content/profile.ts`
+- [x] 2–3 sentence professional summary (first person)
+- [ ] Location (city/region — optional; left blank/hidden for now)
+- [x] Stat row values (15+ yrs, 4 domains, 8 certs, core tools)
+- [x] Headshot → `public/avatar.jpg` (source: `02.jpg` studio headshot).
+      TODO(content): file is ~1.5MB — needs compression/resizing in Phase 6.
 
 Experience (repeat per role — cover Finance, Energy, BGV, Investment Banking)
-- [ ] Company, role/title, exact start–end dates, location
-- [ ] Domain tag
-- [ ] 2–4 achievement bullets each (what you did → impact → tech used)
-- [ ] Tech chips per role
+- [x] Company, role/title, exact start–end dates — sourced from `TimeLine.xlsx`
+      (Wells Fargo, Encora Labs/Accurate, Accenture/Shell, Accenture/TGP)
+- [x] Domain tag — all 4 CLAUDE.md domains covered, one role each
+- [x] 2–4 achievement bullets each (what you did → impact → tech used)
+- [x] Tech chips per role
+- [ ] Location per role (not provided — left unset)
 
 Skills
-- [ ] Confirm/adjust the cluster list and populate skills + proficiency tiers
-- [ ] Anything beyond ETL/BI/DB/Python/AI to add? (from the PDF)
+- [x] Confirm/adjust the cluster list and populate skills + proficiency tiers
+      — real levels + years-of-experience sourced from the Tableau workbook's
+      underlying `Tools.csv` skill-level data
+- [x] Anything beyond ETL/BI/DB/Python/AI to add? Cloud & DevOps (AWS/Azure/
+      GCP/Docker) and Ways of Working (Agile) both populated with real data
 
 Projects
-- [ ] GitHub username + the repos to feature (mark `featured: true`)
-- [ ] Short blurb + tech per project
-- [ ] Any Tableau vizzes to showcase (URLs + a thumbnail image each)
+- [x] GitHub username + the repo to feature — FinSight AI, confirmed public at
+      `github.com/AdarshMurali/FinSight-AI`, `featured: true`
+- [x] Short blurb + tech per project
+- [ ] Any additional Tableau vizzes to showcase beyond the main resume viz —
+      none identified yet; revisit if Adarsh publishes more
 
 Certifications
 - [x] Each: name, issuer, year, verify/credential URL — all 8 extracted from
@@ -118,7 +126,8 @@ Links
 Assets
 - [x] `public/resume.pdf` (canonical downloadable PDF) — copied from
       `AdarshResume2026.pdf` at repo root
-- [ ] Accent color preference / any brand guidance
+- [x] Accent color preference — #e3ac14 (gold), confirmed 2026-07-30, see
+      docs/DESIGN.md §2
 - [ ] `og-image` source or let the build generate one
 
 ---

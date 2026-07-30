@@ -13,6 +13,23 @@ keep it honest and current. Format:
 ---
 
 ## 2026-07-30
+- **Phase 0 complete.** Populated `profile.ts`, `experience.ts`, `skills.ts`,
+  and `projects.ts` with real data, sourced from files Adarsh provided at
+  `C:\Tableau Certification\Resume\` (TimeLine.xlsx for exact employment
+  dates/education, Tools.csv for per-skill proficiency levels + years,
+  Tools_Used_Daily.xlsx, RESUME.txt for headline language) plus the GitHub
+  API (confirmed `AdarshMurali/FinSight-AI` is public). Decisions locked:
+  headline "Data Engineer, Capital Markets · Python · Big Data · Applied AI";
+  accent color #e3ac14 (gold, matches existing Tableau resume branding, see
+  docs/DESIGN.md §2); headshot copied to `public/avatar.jpg` (needs
+  compression in Phase 6 — currently ~1.5MB); job titles: Data Engineer
+  (Wells Fargo), Senior Data Analyst (Encora Labs, Accenture x2); phone
+  number intentionally excluded from public content. Domains mapped 1:1 to
+  CLAUDE.md's four categories: Wells Fargo → Investment Banking, Encora/
+  Accurate → Background Verification, Accenture/Shell → Energy, Accenture/
+  TGP → Finance. Remaining open item: Jira representation still defaults to
+  "omit" per CONTENT.md §4, not explicitly reconfirmed. TASKS.md Phase 0
+  checklist fully checked off; ready to start Phase 1 (scaffold & tooling).
 - Extracted all 8 certifications (name, issuer, year, credential URL) from the
   Tableau Public visual resume via browser automation (Tableau's accessible/
   keyboard-nav mode exposes mark-level detail — Shape chart, Detail=URL — that
