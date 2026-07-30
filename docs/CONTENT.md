@@ -93,8 +93,9 @@ Profile
 - [x] 2–3 sentence professional summary (first person)
 - [ ] Location (city/region — optional; left blank/hidden for now)
 - [x] Stat row values (15+ yrs, 4 domains, 8 certs, core tools)
-- [x] Headshot → `public/avatar.jpg` (source: `02.jpg` studio headshot).
-      TODO(content): file is ~1.5MB — needs compression/resizing in Phase 6.
+- [x] Headshot → `public/avatar.jpg` (source: `02.jpg` studio headshot,
+      originally a 4912×7360 1.5MB DSLR file; center-cropped to a 400×400
+      square and re-encoded as JPEG q85 in Phase 7 — now 19KB).
 
 Experience (repeat per role — cover Finance, Energy, BGV, Investment Banking)
 

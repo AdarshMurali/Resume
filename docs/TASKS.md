@@ -138,9 +138,22 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 ## Phase 7 — Launch
 
 - [ ] (A) Custom domain on Vercel
-- [ ] (CC) Prod env vars set; final deploy
-- [ ] (A) Proofread all content; remove every TODO(content)
-- [ ] (CC) Finalize README
+- [ ] (CC) Prod env vars set; final deploy — blocked on a decision from
+      Adarsh: see docs/PROGRESS_LOG.md — the `adarsh` branch has never been
+      pushed to GitHub (all Phase 0-6 work is local-only commits), and the
+      Vercel project isn't git-connected (deploys so far were manual
+      file-tree uploads). Need direction on push/PR strategy before a real
+      "final deploy" makes sense.
+- [x] (CC) Fixed a leftover Phase 6 item found while reviewing docs/CONTENT.md:
+      `public/avatar.jpg` was an unoptimized 4912×7360 1.5MB DSLR export;
+      center-cropped to 400×400 and re-encoded as JPEG — now 19KB (98.7%
+      smaller), same visual crop
+- [ ] (A) Proofread all content; remove every TODO(content) — none found as
+      live markers in `src/content/*`; only historical/instructional
+      mentions remain in docs
+- [x] (CC) Finalize README — rewritten to match current reality (OpenAI not
+      Anthropic, actual repo structure incl. api/_lib and chat components,
+      correct env var list, `pnpm eval:chatbot` usage)
 - [ ] (A) Share the URL 🎉
 - [ ] (CC/A) (Optional) privacy-friendly analytics
 

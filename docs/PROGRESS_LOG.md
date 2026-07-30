@@ -12,6 +12,44 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 7 — launch, in progress)
+- Fixed a leftover Phase 6 item: `docs/CONTENT.md` flagged `public/avatar.jpg`
+  as an unoptimized 4912×7360 (36MP) 1.5MB DSLR export needing
+  compression — missed it during the actual Phase 6 pass. Center-cropped to
+  400×400 and re-encoded as JPEG q85 via a throwaway canvas tool page (no
+  image library in the project); now 19KB, a 98.7% reduction. Same visual
+  crop, verified by screenshot.
+- Rewrote README.md — the old version still referenced `ANTHROPIC_API_KEY`
+  and a generic repo map from before Phase 4/5/6 existed. Now matches
+  current reality: OpenAI provider, actual file structure, correct env var
+  list (and calls out that the `VITE_*` vars in `.env.example` are
+  documentation-only — nothing in the app code actually reads them via
+  `import.meta.env`; `src/content/*.ts` is the real source of truth).
+- **Found something that blocks "final deploy":** `git branch -vv` shows the
+  `adarsh` branch is 10 commits ahead of `origin/adarsh` — every phase of
+  this engagement (0 through 6) exists only as local commits and has never
+  been pushed to GitHub. `origin/main` only has an early PR merge that
+  predates all of the real content/feature work. All Vercel deployments so
+  far were manual file-tree uploads via a Vercel MCP tool, not git-triggered
+  — the project isn't connected to the GitHub repo
+  (`github.com/AdarshMurali/Resume`) in Vercel at all yet, even though
+  `docs/ARCHITECTURE.md` §8 has always described the target as "Prod: main
+  branch → custom domain" (git-based continuous deployment). Asked Adarsh
+  how he wants to handle the push/PR/git-integration before doing anything
+  that touches the shared GitHub repo, since pushing code and connecting
+  Vercel to it are both visible, this-isn't-just-mine actions.
+- **Adarsh's call**: push `adarsh` + open a PR into `main` (not a direct
+  merge), and get walked through connecting Vercel to the GitHub repo rather
+  than continuing manual deploys. Pushed `adarsh` to origin and opened
+  https://github.com/AdarshMurali/Resume/pull/2. Vercel git-connection needs
+  Adarsh's own GitHub OAuth approval in the dashboard — gave him the exact
+  steps (Settings → Git → Connect Git Repository → set Production Branch to
+  `main`); once connected, merging the PR will trigger a real production
+  deploy automatically.
+- TODO(content): none new. `docs/CONTENT.md`'s content checklist has no
+  remaining `TODO(content)` markers other than the location field (still
+  intentionally blank per Phase 0's decision).
+
 ## 2026-07-30 (Phase 6 — polish, a11y, SEO, performance)
 - SEO: OG/Twitter meta + JSON-LD Person in `index.html`, favicon set
   (16/32/apple-touch/512) + `site.webmanifest` rendered from `favicon.svg`
