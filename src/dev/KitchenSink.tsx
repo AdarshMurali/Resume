@@ -20,13 +20,14 @@ const swatches = [
   { name: "muted", className: "bg-muted" },
   { name: "card", className: "bg-card border border-border" },
   { name: "border", className: "bg-border" },
-  { name: "destructive", className: "bg-destructive" },
 ];
 
-function Swatch({ name, className }: { name: string; className: string }) {
+function Swatch({ name, className, label }: { name: string; className: string; label?: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <div className={`h-16 rounded-lg ${className}`} />
+      <div className={`flex h-16 items-center justify-center rounded-lg ${className}`}>
+        {label && <span className="text-sm font-medium">{label}</span>}
+      </div>
       <span className="text-sm text-muted-foreground">{name}</span>
     </div>
   );
@@ -68,6 +69,11 @@ export function KitchenSink() {
               {swatches.map((s) => (
                 <Swatch key={s.name} {...s} />
               ))}
+              <Swatch
+                name="destructive (as used — /10 tint)"
+                className="bg-destructive/10 text-destructive"
+                label="Error"
+              />
             </div>
           </section>
 
