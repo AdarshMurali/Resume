@@ -12,6 +12,79 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 4 — integrations)
+
+- **GitHub live stats**: `scripts/fetch-github.ts` calls the public GitHub API
+  (unauthenticated, fine at this volume) for each project's repo, writes
+  `src/content/github-cache.json` (stars/language/last-push). Wired as an npm
+  `prebuild` script so it runs automatically before every `pnpm build` (and
+  therefore on every Vercel build too). Per-repo failures keep the previous
+  cached entry rather than failing the build — the actual "graceful
+  degradation" ARCHITECTURE.md asks for. The cache file is **committed**, not
+  gitignored, specifically so `pnpm dev` still works on a fresh clone before
+  anyone has ever run the fetch script (`pnpm dev` doesn't trigger
+  `prebuild`, only `pnpm build` does) — it'll show a real diff after every
+  build since the data legitimately refreshes, similar to a lockfile.
+  `content/index.ts` merges cache entries into `repoStats` by matching the
+  project's `links.github` URL. `Projects.tsx` now shows stars/language/last
+  updated when present.
+- **Tableau embed — changed course after finding a real problem**: confirmed
+  Tableau Public's static-thumbnail URL pattern
+  (`/static/images/{2-letter-prefix}/{workbook}/{view}/{variant}.png`) works,
+  but both variants I tried were unusable: the `4_3` crop clearly shows
+  Adarsh's phone number (which he explicitly asked to keep off the site —
+  see docs/PROGRESS_LOG.md Phase 0), and the full-page `1.png` variant
+  renders with broken/missing text (Tableau's static renderer seems to drop
+  custom fonts). Asked Adarsh rather than guessing; he chose no thumbnail.
+  Built a text/icon callout `Card` in the Projects section instead —
+  consistent visual weight with the FinSight AI project card, zero privacy
+  risk, no reliance on a flaky static-render pipeline.
+- **Jira**: no new work — CONTENT.md §4's default (omit the live link,
+  represent as narrative) was already satisfied by the "Agile delivery"
+  skill entry from Phase 0. Marked done in TASKS.md.
+- **Command palette (⌘K)**: added via shadcn's `command` component (pulls in
+  `cmdk`, a small standard library — already implicitly pre-approved, since
+  CLAUDE.md §5 lists the command palette itself as an intentional feature).
+  Visible "Jump to…" button in the header (not just the invisible shortcut)
+  so recruiters who don't know ⌘K can still find it. Groups: Sections (jump
+  via `scrollIntoView`) and Links (résumé download, GitHub, LinkedIn,
+  Tableau, email — open via `window.open`).
+  - **Real bug caught and fixed**: shadcn's generated `CommandDialog` does
+    _not_ wrap its children in the `Command` root (cmdk's context provider)
+    — it just drops `{children}` into `DialogContent`. Using
+    `CommandInput`/`CommandList`/etc. directly inside `CommandDialog` without
+    an explicit `<Command>` wrapper crashed with "Cannot read properties of
+    undefined (reading 'subscribe')" the moment the dialog opened. Fixed by
+    wrapping the contents in `<Command>` explicitly. If any other shadcn
+    "compound" component behaves oddly, check whether the wrapper actually
+    provides the context you'd assume it does — don't assume the shadcn
+    recipe is complete just because it compiles.
+  - **False-positive lint caught**: the newer `eslint-plugin-react-hooks`
+    "immutability" rule flagged `window.location.hash = href` inside an
+    event handler as "Modifying a variable defined outside a component or
+    hook" — not a real bug (it's user-triggered, not a render-time
+    mutation), but avoided the pattern anyway by using
+    `document.querySelector(href)?.scrollIntoView(...)` instead, which
+    sidesteps the false positive entirely.
+  - **Benign warning, not a bug**: clicking to open the palette logs a React
+    dev-only warning ("Function components cannot be given refs... did you
+    mean React.forwardRef?") pointing at `DialogOverlay`. `radix-ui`'s
+    peerDependencies explicitly declare React 18 support, and click-outside-
+    to-dismiss was verified working regardless — concluded this is a
+    StrictMode double-render artifact (React strips these checks from
+    production builds), not a functional problem. Not worth more time.
+  - Added `html { scroll-smooth }` + `scroll-padding-top` (clears the sticky
+    header) globally while implementing this, since the palette's "jump to
+    section" behavior made the lack of smooth scroll obvious.
+  - Also added `github-cache.json`'s reuse: extracted `SECTION_LINKS` into
+    `src/lib/nav.ts` so `SiteNav` (Phase 3) and `CommandPalette` share one
+    list instead of duplicating it.
+- Verified end-to-end in Chrome DevTools: keyboard shortcut (⌘K/Ctrl+K),
+  click-to-open button, fuzzy search filtering, Enter-to-select for both a
+  section (scrolls) and an external link (opens new tab), Escape/click-
+  outside to close. `pnpm build`/`lint`/`tsc -b` all pass clean.
+- All Phase 4 TASKS.md items done.
+
 ## 2026-07-30 (Phase 3 addendum — sticky nav)
 
 - Adarsh flagged that there was no visible way to jump to a section without

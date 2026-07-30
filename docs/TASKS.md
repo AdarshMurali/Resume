@@ -56,10 +56,19 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 
 ## Phase 4 — Integrations
 
-- [ ] (CC) GitHub repos via REST, cached at build + fallback
-- [ ] (CC) Tableau vizzes (thumbnails/embeds)
-- [ ] (CC) Jira representation per decision
-- [ ] (CC) Command palette (⌘K) wired to sections + links
+- [x] (CC) GitHub repos via REST, cached at build + fallback — `scripts/fetch-github.ts`
+      runs via `prebuild`, writes `src/content/github-cache.json`; failures keep the
+      previous cached entry rather than breaking the build
+- [x] (CC) Tableau vizzes (thumbnails/embeds) — no image embed: Tableau's static
+      thumbnail exposes Adarsh's phone number (the `4_3.png` crop) and the full-page
+      variant renders with broken/missing text. Adarsh chose a text/icon callout
+      card instead (Projects section) — see docs/PROGRESS_LOG.md
+- [x] (CC) Jira representation per decision — CONTENT.md §4 default (omit live link,
+      narrative only) already satisfied via the "Agile delivery" skill entry from
+      Phase 0; no new work needed, not explicitly reconfirmed by Adarsh but no
+      change requested either
+- [x] (CC) Command palette (⌘K) wired to sections + links — `cmdk` via shadcn's
+      `command` component; sections + résumé/GitHub/LinkedIn/Tableau/email
 
 ## Phase 5 — AI assistant
 

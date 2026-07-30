@@ -187,7 +187,8 @@
   }
 
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 4.5rem; /* clears the sticky header when jumping to a section */
   }
 
   body {
