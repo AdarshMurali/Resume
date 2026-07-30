@@ -47,7 +47,8 @@
   --input: oklch(0.922 0 0);
   --ring: #e3ac14;
 
-  --radius: 0.625rem;
+  /* One radius token per DESIGN.md §4 (12-16px); shadcn's derived radius-sm/lg/xl/... all scale off this. */
+  --radius: 0.75rem;
 
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -156,6 +157,28 @@
 
   --font-sans: "Geist Variable", sans-serif;
   --font-heading: var(--font-sans);
+
+  /*
+   * Fluid type scale — see DESIGN.md §3. One family (Geist) covers both
+   * heading and body; it reads cleanly at display sizes and stays neutral
+   * for body text, so a second family wasn't worth the extra font-load
+   * weight. `body`, `small`, and `caption` use Tailwind's stock
+   * text-base/text-sm/text-xs — no custom token needed there.
+   */
+  --text-display: clamp(2.75rem, 2.1rem + 2.6vw, 4.25rem);
+  --text-display--line-height: 1.05;
+  --text-display--font-weight: 700;
+  --text-h1: clamp(2.25rem, 1.85rem + 1.6vw, 3.25rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--font-weight: 700;
+  --text-h2: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 600;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 600;
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+  --text-body-lg--line-height: 1.6;
 }
 
 @layer base {

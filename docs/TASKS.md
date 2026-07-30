@@ -33,9 +33,9 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 
 ## Phase 2 — Design system
 
-- [ ] (CC) Color tokens (light+dark), type scale, spacing, radius, shadow, motion
-- [ ] (CC) Primitives: SectionHeading, Card, Badge, Timeline, StatTile, SkillMeter
-- [ ] (CC) Kitchen-sink page to review the system in both themes
+- [x] (CC) Color tokens (light+dark), type scale, spacing, radius, shadow, motion
+- [x] (CC) Primitives: SectionHeading, Card, Badge, Timeline, StatTile, SkillMeter
+- [x] (CC) Kitchen-sink page to review the system in both themes (`/kitchen-sink`, dev-only)
 - [ ] (A) Approve the visual direction
 
 ## Phase 3 — Core sections

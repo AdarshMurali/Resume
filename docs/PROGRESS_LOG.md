@@ -12,6 +12,51 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 2 — design system)
+
+- Added shadcn's `card` and `badge` components (same `@/` folder relocation
+  bug as `button` in Phase 1 — see docs/PROGRESS_LOG.md Phase 1 entry, same
+  fix applied).
+- Bumped `--radius` from shadcn Nova's default `0.625rem` back to `0.75rem`
+  to match DESIGN.md §4's original 12–16px guidance.
+- Added a fluid `clamp()`-based type scale as Tailwind v4 theme tokens
+  (`text-display`, `text-h1`, `text-h2`, `text-h3`, `text-body-lg` in
+  `globals.css` `@theme inline`, each paired with a `--text-*--line-height`
+  and `--text-*--font-weight` companion key — Tailwind v4 bundles those into
+  the generated utility automatically, so e.g. `text-h2` alone sets size +
+  line-height + weight). `body`/`small`/`caption` reuse Tailwind's stock
+  `text-base`/`text-sm`/`text-xs`. Decided against a second font family
+  (DESIGN.md originally suggested one for headings, one for body) — Geist
+  Variable alone reads well at both ends of the scale; documented the
+  decision in DESIGN.md §3 so it doesn't look like an unfinished TODO later.
+- Built the primitives: `StatTile`, `SkillMeter` (dot-tier proficiency,
+  `role="img"` + descriptive `aria-label` since the dots themselves are
+  `aria-hidden`), `Timeline`/`TimelineItem`, and extended `SectionHeading`
+  with an optional `description`. `Card`/`Badge` came from shadcn; `Button`
+  already existed from Phase 1.
+- Added `src/lib/motion.ts` (fadeInUp / staggerChildren variants) and a
+  `Reveal` wrapper component using `motion/react`'s `whileInView`. Wrapped
+  the app root in `<MotionConfig reducedMotion="user">` so every motion
+  component automatically respects `prefers-reduced-motion` without
+  per-component guards — simpler than DESIGN.md's original per-animation
+  reduced-motion checklist item, and verified working.
+- Built `/kitchen-sink` (`src/dev/KitchenSink.tsx`) to review every
+  primitive, both themes, all four breakpoints (375/768/1024/1440) in one
+  place. It's gated behind `import.meta.env.DEV` + a pathname check in
+  `main.tsx` (no router — CLAUDE.md §3 says none needed for the real site) so
+  it's dynamically imported only in dev; confirmed via `pnpm build` that no
+  separate chunk is emitted, so it never ships to production.
+- Verified in Chrome DevTools: light + dark, 375/768/1440px, no console
+  errors, scroll-reveal fires correctly. One thing to flag: a screenshot at
+  768px showed "Heading 2" rendering in an apparently different (bluish)
+  color than "Heading 1"/"Heading 3" — checked via `getComputedStyle` and
+  confirmed all three have the identical color value; it's a one-off
+  screenshot/PNG rendering artifact, not a real CSS bug. Worth a sanity
+  glance if it ever recurs, but not something to chase.
+- `pnpm build`/`lint`/`tsc -b` all pass clean.
+- CC-owned Phase 2 tasks done; **(A) Approve the visual direction** is still
+  open — waiting on Adarsh to review `/kitchen-sink` before Phase 3 starts.
+
 ## 2026-07-30 (Phase 1 — scaffold & tooling)
 
 - Scaffolded Vite + React 18 + TypeScript by hand (create-vite defaults to
@@ -36,8 +81,8 @@ keep it honest and current. Format:
   is a darkened amber (`#b45309`, ~5:1) while dark mode reuses the vivid gold
   since dark backgrounds give it ~10:1 headroom. Rule of thumb going forward:
   `bg-primary` + `text-primary-foreground` (filled buttons) can use the vivid
-  gold; anything rendering gold *as text/border directly on the page
-  background* should use `brand` instead.
+  gold; anything rendering gold _as text/border directly on the page
+  background_ should use `brand` instead.
 - Switched dark-mode mechanism from a `data-theme` attribute to toggling a
   `.dark` class on `<html>`, to match shadcn/Tailwind v4's
   `@custom-variant dark (&:is(.dark *))` convention that all future shadcn
