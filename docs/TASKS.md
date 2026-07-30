@@ -29,7 +29,7 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [x] (CC) ESLint + Prettier + path aliases (`@/`) + `.nvmrc`
 - [x] (CC) Theme provider (light/dark/system) + toggle
 - [x] (CC) Layout shell + empty section stubs (Hero/About/Experience/Skills/Projects/Certifications/Contact, all reading from `src/content`)
-- [ ] (CC) First Vercel deploy (prove pipeline) → preview URL
+- [x] (CC) First Vercel deploy (prove pipeline) → https://adarsh-resume-sepia.vercel.app
 
 ## Phase 2 — Design system
 

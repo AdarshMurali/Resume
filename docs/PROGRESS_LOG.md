@@ -49,7 +49,23 @@ keep it honest and current. Format:
   errors) via Chrome DevTools MCP before calling it done.
 - `pnpm build`, `pnpm lint` (ESLint flat config + typescript-eslint +
   react-hooks/react-refresh), and `tsc -b` all pass clean.
-- Not yet done: first Vercel deploy to prove the pipeline (next step).
+- First Vercel deploy done: https://adarsh-resume-sepia.vercel.app (team
+  "FinSightsAI", project `adarsh-resume`). Deployed via the Vercel MCP
+  `deploy_to_vercel` tool (file-tree upload) rather than the `vercel` CLI —
+  no CLI was installed and `vercel link`/`vercel login` need an interactive
+  browser OAuth flow that isn't available in this environment; the MCP
+  plugin already had an authenticated session. This first deploy excluded
+  `public/avatar.jpg` and `public/resume.pdf` (kept the payload small; the
+  stub UI doesn't reference either yet) and has no lockfile uploaded, so
+  Vercel resolved dependencies fresh via `npm install` rather than using
+  the exact pnpm-locked versions — fine for this smoke test, but the real
+  git-integrated deploy (Phase 7) should import directly from GitHub so
+  builds use the committed `pnpm-lock.yaml` and full `public/` assets.
+  Verified the live URL in Chrome (matches local dev, no console errors).
+  Note: since this was the project's first-ever deployment, Vercel
+  auto-promoted it to production (normal for a brand-new project, not a
+  Phase 7 launch action).
+- **Phase 1 complete.** All TASKS.md items checked off.
 
 ## 2026-07-30
 
