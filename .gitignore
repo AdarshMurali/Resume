@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor/OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings (machine-specific permissions)
+.claude/settings.local.json
+
+# Generated chatbot knowledge file (regenerate via scripts/build-knowledge.ts)
+src/content/knowledge.generated.md
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
