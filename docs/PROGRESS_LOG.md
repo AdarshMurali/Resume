@@ -12,6 +12,22 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 3 addendum — sticky nav)
+
+- Adarsh flagged that there was no visible way to jump to a section without
+  scrolling. Checked the docs: DESIGN.md §6 always called for a "sticky,
+  minimal top nav (name + section anchors + theme toggle)", but it never got
+  its own TASKS.md line — only the ⌘K command palette did, and that's a
+  Phase 4 item and a power-user feature, not a substitute for visible nav.
+  Added `src/components/common/SiteNav.tsx`: first-name logo linking to
+  `#hero`, inline section links on `sm:` and up, a hamburger-triggered
+  dropdown below `sm:` (plain React state, no extra dependency — a Sheet/
+  DropdownMenu component would've been overkill for 6 links). Wired into
+  `App.tsx`'s header next to `ThemeToggle`. "Ask my AI" nav item is
+  intentionally not there yet — no chatbot exists until Phase 5. Verified
+  desktop nav, mobile dropdown open/close, and actual scroll-to-section
+  behavior in Chrome DevTools. `pnpm build`/`lint`/`tsc -b` all clean.
+
 ## 2026-07-30 (Phase 3 — core sections)
 
 - Wired Phase 2's primitives into all 7 real sections, replacing the Phase 1
@@ -25,7 +41,7 @@ keep it honest and current. Format:
   button/card/badge — same fix, see Phase 1/2 entries).
 - **Gotcha**: `lucide-react` v1 dropped all brand/logo icons (GitHub,
   LinkedIn, etc.) for trademark reasons — `import { Github, Linkedin } from
-  "lucide-react"` fails to compile. Added `src/components/common/BrandIcons.tsx`
+"lucide-react"` fails to compile. Added `src/components/common/BrandIcons.tsx`
   with the two needed marks as inline SVGs (standard Simple Icons CC0 paths)
   rather than pulling in a new icon-library dependency for two icons.
 - **Gotcha**: initially wrapped `<Collapsible>` (renders a `div`) directly

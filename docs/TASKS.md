@@ -47,6 +47,11 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [x] (CC) Projects grid (cards + links) — Card, tech Badges, Featured badge, GitHub link
 - [x] (CC) Certifications grid — Card grid, verify links
 - [x] (CC) Contact / footer — icon links (custom inline SVGs for GitHub/LinkedIn — lucide-react v1 dropped brand logos), résumé download repeated
+- [x] (CC) Sticky top nav with section anchors — DESIGN.md §6 called for this from
+      the start but it never got its own checklist line (only the ⌘K palette did,
+      in Phase 4); added retroactively after Adarsh flagged the gap. Desktop:
+      inline links; mobile (<640px): hamburger toggles a dropdown. "Ask my AI"
+      nav item still pending Phase 5 (chatbot doesn't exist yet)
 - [x] (CC) Responsive pass at 375/768/1024/1440 — verified both themes via Chrome DevTools
 
 ## Phase 4 — Integrations

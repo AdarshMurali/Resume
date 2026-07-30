@@ -1,6 +1,7 @@
 import { MotionConfig } from "motion/react";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { SiteNav } from "@/components/common/SiteNav";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
@@ -19,7 +20,8 @@ function App() {
         >
           Skip to content
         </a>
-        <header className="sticky top-0 z-40 flex items-center justify-end border-b border-border bg-background/80 px-6 py-3 backdrop-blur">
+        <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-background/80 px-6 py-3 backdrop-blur">
+          <SiteNav />
           <ThemeToggle />
         </header>
         <main>
