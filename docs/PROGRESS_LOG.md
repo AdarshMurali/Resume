@@ -12,6 +12,50 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 3 — core sections)
+
+- Wired Phase 2's primitives into all 7 real sections, replacing the Phase 1
+  stubs: Hero (headshot, domain pills, Download résumé + Contact CTAs — no
+  "Ask my AI" CTA yet since the chatbot doesn't exist until Phase 5), About
+  (StatTile), Experience (Timeline + per-item Radix Collapsible for
+  expand/collapse, tech chips + domain tag revealed on expand), Skills (Card
+  per category + SkillMeter), Projects (Card, tech Badges, Featured badge),
+  Certifications (Card grid), Contact (icon links + résumé download repeat).
+- Added shadcn's `collapsible` component (same `@/` folder bug as
+  button/card/badge — same fix, see Phase 1/2 entries).
+- **Gotcha**: `lucide-react` v1 dropped all brand/logo icons (GitHub,
+  LinkedIn, etc.) for trademark reasons — `import { Github, Linkedin } from
+  "lucide-react"` fails to compile. Added `src/components/common/BrandIcons.tsx`
+  with the two needed marks as inline SVGs (standard Simple Icons CC0 paths)
+  rather than pulling in a new icon-library dependency for two icons.
+- **Gotcha**: initially wrapped `<Collapsible>` (renders a `div`) directly
+  around `<TimelineItem>` (renders an `<li>`), producing invalid
+  `<ol><div><li>` nesting. Fixed by moving `Collapsible` inside
+  `TimelineItem`'s children instead of around the whole item — `li > div` is
+  valid, `ol > div` is not.
+- **Gotcha worth remembering**: a `fullPage` screenshot taken without first
+  scrolling showed almost the entire page blank except Hero. This was not a
+  bug — every section is wrapped in `<Reveal>` (`whileInView`), and Chrome
+  DevTools Protocol's full-page capture renders an extended viewport in one
+  shot without dispatching real scroll/intersection events, so anything
+  below the actual (pre-resize) viewport height never got marked as
+  intersecting and stayed at its `hidden` (opacity 0) state. Confirmed by
+  scripting an incremental `window.scrollTo` sweep before capturing — every
+  section rendered correctly once genuinely scrolled through. **Takeaway for
+  future screenshots on this project**: always scroll through the page
+  programmatically before a `fullPage` capture, or the shot will look broken
+  even when the site works fine for a real visitor.
+- Verified in Chrome DevTools: light + dark, 375/768/1440px, expand/collapse
+  interaction, no console errors, all links/hrefs correct (resume.pdf,
+  mailto, LinkedIn, GitHub, Tableau Public, FinSight-AI repo, all 8
+  certification verify links).
+- `pnpm build`/`lint`/`tsc -b` all pass clean. Bundle grew from ~60KB to
+  ~108KB gzip JS (motion/react + Radix Collapsible + more shadcn components) —
+  confirmed lucide-react tree-shaking still works (no unused icons leaked
+  into the bundle); further bundle-size tuning is a Phase 6 concern, not now.
+- All Phase 3 TASKS.md items done. Full page now scrolls top-to-bottom with
+  real content, per PROJECT_PLAN.md's Phase 3 exit criteria.
+
 ## 2026-07-30 (Phase 2 — design system)
 
 - Added shadcn's `card` and `badge` components (same `@/` folder relocation

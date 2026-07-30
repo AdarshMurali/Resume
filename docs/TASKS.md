@@ -40,14 +40,14 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 
 ## Phase 3 — Core sections
 
-- [ ] (CC) Hero (name, role, value prop, CTAs, domain pills)
-- [ ] (CC) About + stat row
-- [ ] (CC) Experience timeline (expandable, tech chips, domain tags)
-- [ ] (CC) Skills clusters (tiers/meters)
-- [ ] (CC) Projects grid (cards + links)
-- [ ] (CC) Certifications grid
-- [ ] (CC) Contact / footer
-- [ ] (CC) Responsive pass at 375/768/1024/1440
+- [x] (CC) Hero (name, role, value prop, CTAs, domain pills) — headshot, download résumé + contact CTAs, 4 domain pills
+- [x] (CC) About + stat row (StatTile primitive)
+- [x] (CC) Experience timeline (expandable, tech chips, domain tags) — Timeline + Collapsible, highlights + tech Badges on expand
+- [x] (CC) Skills clusters (tiers/meters) — Card per category, SkillMeter per skill
+- [x] (CC) Projects grid (cards + links) — Card, tech Badges, Featured badge, GitHub link
+- [x] (CC) Certifications grid — Card grid, verify links
+- [x] (CC) Contact / footer — icon links (custom inline SVGs for GitHub/LinkedIn — lucide-react v1 dropped brand logos), résumé download repeated
+- [x] (CC) Responsive pass at 375/768/1024/1440 — verified both themes via Chrome DevTools
 
 ## Phase 4 — Integrations
 

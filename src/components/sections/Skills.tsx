@@ -1,27 +1,37 @@
 import { content } from "@/content";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { SkillMeter } from "@/components/common/SkillMeter";
+import { Reveal } from "@/components/common/Reveal";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 export function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-3xl px-6 py-16">
-      <SectionHeading eyebrow="Skills" title="Tools & platforms" />
-      <div className="grid gap-6 sm:grid-cols-2">
-        {content.skills.map((cluster) => (
-          <div key={cluster.category}>
-            <h3 className="mb-2 text-sm font-medium text-muted-foreground">{cluster.category}</h3>
-            <ul className="flex flex-wrap gap-2">
-              {cluster.skills.map((skill) => (
-                <li
-                  key={skill.name}
-                  className="rounded-full border border-border px-3 py-1 text-sm"
-                >
-                  {skill.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <Reveal>
+        <SectionHeading eyebrow="Skills" title="Tools & platforms" />
+        <div className="grid gap-4 sm:grid-cols-2">
+          {content.skills.map((cluster) => (
+            <Card key={cluster.category}>
+              <CardHeader>
+                <CardTitle>{cluster.category}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-3">
+                {cluster.skills.map((skill) => (
+                  <div key={skill.name} className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{skill.name}</p>
+                      {skill.note && (
+                        <p className="truncate text-xs text-muted-foreground">{skill.note}</p>
+                      )}
+                    </div>
+                    {skill.level && <SkillMeter level={skill.level} />}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
