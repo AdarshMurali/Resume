@@ -12,6 +12,52 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 6 — polish, a11y, SEO, performance)
+- SEO: OG/Twitter meta + JSON-LD Person in `index.html`, favicon set
+  (16/32/apple-touch/512) + `site.webmanifest` rendered from `favicon.svg`
+  via chrome-devtools screenshots (no design tool available), `og-image.png`
+  (1200x630, dark/gold brand card) built the same way, `robots.txt` +
+  `sitemap.xml`, and `llms.txt` (added after a Lighthouse "agentic-browsing"
+  audit flagged its absence — cheap, on-brand for an AI-forward site, not
+  originally scoped).
+- Canonical/OG URLs are hardcoded to the current Vercel URL
+  (`adarsh-resume-sepia.vercel.app`) since there's no custom domain yet —
+  TODO: update once Phase 7 sets one up.
+- Print stylesheet added (`@media print` in globals.css): hides
+  nav/chat/dialogs, forces light-theme CSS variables regardless of active
+  theme, spells out external hrefs as text.
+- **Accessibility bug found and fixed**: closing the ⌘K palette or the chat
+  panel via Escape dropped focus to `<body>` instead of restoring it to the
+  trigger. Root cause: both triggers are plain `<button>`s, not Radix
+  `Trigger` components, so Radix's built-in focus-restore-on-close never
+  engaged. Fixed in both `CommandPalette.tsx` and `ChatLauncher.tsx` by
+  tracking `document.activeElement` before opening and restoring it via
+  `requestAnimationFrame` on close (needs to run after Radix's own close
+  handling, not before). Verified with real keyboard focus in Chrome
+  DevTools, not synthetic clicks — a synthetic click doesn't reliably
+  reproduce real keyboard-focus behavior for this kind of check.
+- **Lighthouse**: Accessibility/Best Practices/SEO all **100**. Performance
+  had a real bug, not just tuning: the hero's LCP text was wrapped in
+  `<Reveal>` (a `whileInView` fade-in) even though the hero is visible
+  immediately on load and never scrolls into view — this meant nothing
+  painted until React + Framer Motion fully booted. Fixed by (1) removing
+  `Reveal` from Hero, then (2) restructuring so Framer Motion isn't in the
+  critical bundle at all — it's only needed for below-the-fold sections, so
+  `About`..`Certifications` and the footer now lazy-load via
+  `BelowFoldSections.tsx`/`LazyFooter.tsx` (two boundaries, not one, because
+  the footer must stay a DOM sibling of `<main>` — nesting it inside would
+  silently drop its `contentinfo` landmark role per the HTML5 spec). Result,
+  measured via chrome-devtools performance traces under Lighthouse's mobile
+  profile (Slow 4G + 4x CPU): critical-path JS 125KB→76KB gzip, LCP
+  3.26s→2.03s. Could not get a numeric Lighthouse Performance score directly
+  (the audit tool available here excludes performance from its category
+  scores, only Accessibility/Best Practices/SEO/agentic-browsing) — going by
+  Core Web Vitals thresholds directly, LCP and CLS (0.02) are both
+  comfortably "Good."
+- `pnpm build` and `pnpm lint` clean throughout.
+- TODO(content): none.
+- Blocked: none — Phase 6 is code/config only, no Adarsh-owned items.
+
 ## 2026-07-30 (Phase 5 — AI assistant)
 - Built the full chatbot: `scripts/build-knowledge.ts` (compiles
   `src/content` → `src/content/knowledge.generated.ts`), `api/_lib/llm.ts`

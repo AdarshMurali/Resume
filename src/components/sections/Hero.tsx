@@ -2,14 +2,20 @@ import { Download, Mail } from "lucide-react";
 import { content } from "@/content";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Reveal } from "@/components/common/Reveal";
 
 export function Hero() {
   const { profile } = content;
 
   return (
     <section id="hero" className="mx-auto flex max-w-3xl flex-col items-start gap-6 px-6 py-24">
-      <Reveal className="flex flex-col items-start gap-6">
+      {/*
+        No scroll-reveal here (unlike every other section) — the hero is
+        visible immediately on load, and its headline text is the page's LCP
+        candidate. Gating it behind a JS-triggered whileInView animation
+        meant nothing painted until React + Framer Motion finished booting;
+        see docs/PROGRESS_LOG.md Phase 6 for the trace that caught this.
+      */}
+      <div className="flex flex-col items-start gap-6">
         <div className="flex items-center gap-5">
           {profile.avatarUrl && (
             <img
@@ -52,7 +58,7 @@ export function Hero() {
             </a>
           </Button>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

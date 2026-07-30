@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#e3ac14" />
     <title>Adarsh Murali — Data Engineer, Capital Markets</title>
@@ -10,6 +14,65 @@
       name="description"
       content="Interactive resume for Adarsh Murali — Data Engineer, Capital Markets. ETL, Python, Big Data, and applied AI across finance, energy, and background verification."
     />
+    <!--
+      Canonical/OG/Twitter values below are static so they work for crawlers
+      that don't execute JS. They're duplicated from src/content/profile.ts —
+      update both if the headline/summary ever changes (same tradeoff already
+      accepted for .env.example, see its header comment).
+      NOTE(content): og:url / canonical point at the current Vercel URL.
+      Update to the custom domain once Phase 7 sets one up.
+    -->
+    <link rel="canonical" href="https://adarsh-resume-sepia.vercel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Adarsh Murali — Interactive Résumé" />
+    <meta property="og:url" content="https://adarsh-resume-sepia.vercel.app/" />
+    <meta property="og:title" content="Adarsh Murali — Data Engineer, Capital Markets" />
+    <meta
+      property="og:description"
+      content="ETL pipelines, Python-driven data engineering, and BI systems for regulatory reporting — now extending into big data and applied AI, across finance, energy, and background verification."
+    />
+    <meta property="og:image" content="https://adarsh-resume-sepia.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adarsh Murali — Data Engineer, Capital Markets" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Adarsh Murali — Data Engineer, Capital Markets" />
+    <meta
+      name="twitter:description"
+      content="ETL pipelines, Python-driven data engineering, and BI systems for regulatory reporting — now extending into big data and applied AI."
+    />
+    <meta name="twitter:image" content="https://adarsh-resume-sepia.vercel.app/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adarsh Murali",
+        "jobTitle": "Data Engineer, Capital Markets",
+        "description": "Data engineer with 15+ years of experience across capital markets, energy, and background verification, building ETL pipelines, BI systems, and applied AI tooling.",
+        "url": "https://adarsh-resume-sepia.vercel.app/",
+        "image": "https://adarsh-resume-sepia.vercel.app/avatar.jpg",
+        "sameAs": [
+          "https://www.linkedin.com/in/adarsh-murali-93252450/",
+          "https://github.com/AdarshMurali/",
+          "https://public.tableau.com/app/profile/adarsh.m5164/viz/AdarshMuraliResume2026/AdarshResume"
+        ],
+        "knowsAbout": [
+          "ETL",
+          "Python",
+          "Tableau",
+          "SQL",
+          "Apache Spark",
+          "Apache Hadoop",
+          "Big Data",
+          "Applied AI",
+          "Capital Markets",
+          "Regulatory Reporting"
+        ]
+      }
+    </script>
     <script>
       (function () {
         try {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Download, Mail, ArrowRight, Sparkles } from "lucide-react";
 import { content } from "@/content";
 import { SECTION_LINKS } from "@/lib/nav";
@@ -19,20 +19,36 @@ import {
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const { links, profile } = content;
+  // CommandDialog's trigger isn't a Radix <DialogTrigger> (it's also opened
+  // via the global ⌘K shortcut, which can fire from anywhere on the page),
+  // so Radix has no trigger element to auto-restore focus to on close. Track
+  // it ourselves. requestAnimationFrame runs after Radix's own close-focus
+  // handling, so ours wins instead of losing a race to it.
+  const previouslyFocused = useRef<HTMLElement | null>(null);
+
+  function handleOpenChange(next: boolean) {
+    if (next) {
+      previouslyFocused.current = document.activeElement as HTMLElement | null;
+    }
+    setOpen(next);
+    if (!next) {
+      requestAnimationFrame(() => previouslyFocused.current?.focus());
+    }
+  }
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((v) => !v);
+        handleOpenChange(!open);
       }
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [open]);
 
   function go(href: string, external = false) {
-    setOpen(false);
+    handleOpenChange(false);
     if (external) {
       window.open(href, "_blank", "noreferrer");
       return;
@@ -44,7 +60,7 @@ export function CommandPalette() {
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => handleOpenChange(true)}
         className="hidden items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground sm:inline-flex"
       >
         Jump to…
@@ -53,7 +69,7 @@ export function CommandPalette() {
         </kbd>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={handleOpenChange}>
         <Command>
           <CommandInput placeholder="Jump to a section or link…" />
           <CommandList>

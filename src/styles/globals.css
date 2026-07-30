@@ -213,3 +213,73 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Print stylesheet — see docs/DESIGN.md §10. Cmd/Ctrl+P should produce a
+ * clean, traditional one-page résumé: no nav/chat/toggles, no motion, black
+ * on white regardless of the active theme, and external links spelled out
+ * as text since a printed page has no clickable hrefs.
+ */
+@media print {
+  /* Force light-theme tokens for print, whether the site is in dark mode or not. */
+  html.dark,
+  html {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: #e3ac14;
+    --primary-foreground: oklch(0.205 0 0);
+    --brand: #b45309;
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --border: oklch(0.85 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.35 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+  }
+
+  /* Chrome: sticky nav (links, ⌘K trigger, theme toggle) and the chat launcher. */
+  header,
+  [aria-label="Ask my AI assistant about Adarsh's experience"],
+  [data-slot="dialog-overlay"],
+  [data-slot="dialog-content"],
+  [data-slot="sheet-overlay"],
+  [data-slot="sheet-content"] {
+    display: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  section {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  /* Spell out external links as plain text — a printed page has no hrefs. */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: 400;
+    color: oklch(0.35 0 0);
+  }
+}

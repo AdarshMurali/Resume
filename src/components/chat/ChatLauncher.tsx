@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { onOpenChatRequest } from "@/lib/chatBus";
 
@@ -9,12 +9,23 @@ const ChatPanel = lazy(() => import("./ChatPanel").then((m) => ({ default: m.Cha
 export function ChatLauncher() {
   const [open, setOpen] = useState(false);
   const [everOpened, setEverOpened] = useState(false);
+  // The launcher button isn't a Radix <SheetTrigger> (it also opens via the
+  // command palette and a global window event), so Radix has no trigger to
+  // auto-restore focus to on close. Track it ourselves — requestAnimationFrame
+  // runs after Radix's own close-focus handling so ours wins the race.
+  const previouslyFocused = useRef<HTMLElement | null>(null);
 
   useEffect(() => onOpenChatRequest(() => handleOpenChange(true)), []);
 
   function handleOpenChange(next: boolean) {
-    if (next) setEverOpened(true);
+    if (next) {
+      setEverOpened(true);
+      previouslyFocused.current = document.activeElement as HTMLElement | null;
+    }
     setOpen(next);
+    if (!next) {
+      requestAnimationFrame(() => previouslyFocused.current?.focus());
+    }
   }
 
   return (

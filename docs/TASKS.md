@@ -100,11 +100,40 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 
 ## Phase 6 — Polish, a11y, SEO, performance
 
-- [ ] (CC) Print stylesheet → clean one-page PDF
-- [ ] (CC) OG/Twitter meta + generated OG image + JSON-LD Person
-- [ ] (CC) Favicon set, sitemap, robots
-- [ ] (CC) Accessibility pass (focus, aria, contrast, reduced-motion, alt)
-- [ ] (CC) Lighthouse tuning to targets (≥95/100/100/100 mobile)
+- [x] (CC) Print stylesheet → clean one-page PDF — `@media print` in
+      globals.css: hides nav/chat/dialogs, forces light-theme tokens
+      regardless of active theme, spells out external links as text
+- [x] (CC) OG/Twitter meta + generated OG image + JSON-LD Person — meta tags
+      + JSON-LD hardcoded in index.html (duplicated from src/content, same
+      tradeoff as .env.example — see its comment); og-image.png (1200x630)
+      rendered via chrome-devtools screenshot of an HTML template, not a
+      design tool, since none was available
+- [x] (CC) Favicon set, sitemap, robots — favicon-{16,32}x{16,32}.png,
+      apple-touch-icon.png, icon-512.png (all rendered from favicon.svg),
+      site.webmanifest, robots.txt, sitemap.xml. Also added llms.txt
+      (not originally scoped, but a Lighthouse "agentic-browsing" audit
+      flagged its absence — cheap to add and on-brand for an AI-forward site)
+- [x] (CC) Accessibility pass (focus, aria, contrast, reduced-motion, alt) —
+      found and fixed a real bug: closing the command palette or chat panel
+      via Escape dropped focus to `<body>` instead of restoring it, because
+      both triggers are plain `<button>`s (not Radix `Trigger` components),
+      so Radix's auto-restore never engaged. Fixed with a manually-tracked
+      "previously focused element" ref + `requestAnimationFrame` restore in
+      both CommandPalette.tsx and ChatLauncher.tsx. Verified via real
+      keyboard focus (not synthetic clicks) in Chrome DevTools.
+- [x] (CC) Lighthouse tuning to targets (≥95/100/100/100 mobile) —
+      Accessibility/Best Practices/SEO all **100**. Performance: found the
+      hero's LCP text was gated behind a JS-triggered `whileInView` fade-in
+      (Reveal) that never should have been there (hero is visible on load,
+      not scrolled-to) — removed it, then went further and moved Framer
+      Motion off the critical bundle entirely (it's only needed for
+      below-the-fold `Reveal` usage), lazy-loading everything after the
+      hero via `BelowFoldSections`/`LazyFooter`. Cut the critical-path JS
+      from 125KB→76KB gzip and LCP from 3.26s→2.03s under Lighthouse's
+      mobile throttling profile (Slow 4G + 4x CPU) — no numeric Performance
+      score available from the tool used (excludes performance from its
+      category scores; only raw trace metrics), but LCP/CLS are both
+      comfortably in "Good" Core Web Vitals territory now.
 
 ## Phase 7 — Launch
 
