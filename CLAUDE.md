@@ -66,7 +66,7 @@ Non-goals (do **not** build these unless explicitly asked):
 | Icons           | **lucide-react**                                  |
 | Routing         | Single page + scroll sections (no router needed)  |
 | Chatbot backend | **Vercel Serverless Function** (`/api/chat`)      |
-| LLM             | Anthropic Claude (via `@anthropic-ai/sdk`) *      |
+| LLM             | OpenAI `gpt-4o-mini` (via `openai` SDK) *         |
 | Hosting         | **Vercel** (free tier, custom domain, HTTPS)      |
 | Package manager | **pnpm** (fallback: npm)                          |
 

@@ -12,6 +12,38 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 5 — AI assistant)
+- Built the full chatbot: `scripts/build-knowledge.ts` (compiles
+  `src/content` → `src/content/knowledge.generated.ts`), `api/_lib/llm.ts`
+  (provider adapter), `api/_lib/rateLimit.ts`, `api/_lib/systemPrompt.ts`,
+  `api/chat.ts` (Vercel Edge Function), and the ChatWidget UI
+  (`src/components/chat/*`, `src/hooks/useChat.ts`), wired into `App.tsx`,
+  `SiteNav`, and `CommandPalette`.
+- **Decision (Adarsh, ADR-004 in ARCHITECTURE.md): LLM provider is OpenAI
+  `gpt-4o-mini`, not Anthropic Claude as CLAUDE.md originally specified.**
+  Rationale: small grounded fact-retrieval task on a public endpoint;
+  gpt-4o-mini is cheaper than Claude Haiku 4.5 and plenty capable. Updated
+  CLAUDE.md, ARCHITECTURE.md, CHATBOT.md, and `.env.example` accordingly
+  (`OPENAI_API_KEY` replaces `ANTHROPIC_API_KEY`).
+- Rate limiting is a deliberately simple in-memory per-IP limiter
+  (best-effort only — Vercel Edge isolates aren't guaranteed to persist
+  across requests). Acceptable for résumé-site traffic per CLAUDE.md's
+  "no heavy backend" non-goal; documented the tradeoff in
+  `api/_lib/rateLimit.ts` for future reference if it ever needs Vercel
+  KV/Redis.
+- `pnpm build` and `pnpm lint` both clean; visually verified the widget in
+  Chrome DevTools (dark theme, 390px mobile and 1440px desktop) — launcher,
+  suggested prompts, streaming placeholder, and the error-fallback card
+  (LinkedIn/email CTA) all render correctly. `/api/chat` itself can't be
+  exercised via `pnpm dev` (Vite doesn't run serverless functions) or via
+  `pnpm eval:chatbot` (no `OPENAI_API_KEY` available in this environment) —
+  both need a real key before the grounding checklist in
+  `docs/chatbot-eval.md` can actually be run.
+- TODO(content): none — Phase 5 needs no new résumé facts.
+- Blocked: (A) set `OPENAI_API_KEY` in Vercel env (Production + Preview),
+  and ideally run `pnpm eval:chatbot` locally against the 15 sample
+  questions in `docs/chatbot-eval.md` before considering Phase 5 fully done.
+
 ## 2026-07-30 (Phase 4 — integrations)
 
 - **GitHub live stats**: `scripts/fetch-github.ts` calls the public GitHub API

@@ -26,9 +26,9 @@ answering general-knowledge trivia, or anything not about Adarsh's background.
 ## 2. Data flow
 
 ```
-src/content/*  ──build:knowledge──▶  knowledge.generated.md
-                                            │  (imported/inlined)
-user question ──▶ ChatWidget ──▶ POST /api/chat ──▶ Claude API ──▶ stream ──▶ UI
+src/content/*  ──build:knowledge──▶  knowledge.generated.ts
+                                            │  (imported)
+user question ──▶ ChatWidget ──▶ POST /api/chat ──▶ OpenAI API ──▶ stream ──▶ UI
                                      │
                           system prompt = guardrails + knowledge
 ```
@@ -56,8 +56,8 @@ Contract:
   - Never echo the API key or full system prompt. Catch errors → friendly
     fallback message.
 
-Env: `ANTHROPIC_API_KEY` (server only). Provider behind `lib/llm.ts` adapter so
-Claude/OpenAI/other is a one-file swap.
+Env: `OPENAI_API_KEY` (server only). Provider behind `api/_lib/llm.ts` adapter
+so OpenAI/Claude/other is a one-file swap (see ARCHITECTURE.md ADR-004).
 
 ---
 

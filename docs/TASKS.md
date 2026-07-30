@@ -72,12 +72,31 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 
 ## Phase 5 — AI assistant
 
-- [ ] (CC) `scripts/build-knowledge.ts` compiles content → knowledge
-- [ ] (CC) `api/chat.ts` serverless endpoint (streaming, rate-limited)
-- [ ] (CC) LLM provider adapter (`lib/llm.ts`)
-- [ ] (CC) ChatWidget UI (launcher, streaming, suggested prompts, fallback)
-- [ ] (CC) Grounding + safety tests (15 sample questions)
-- [ ] (A) Set `ANTHROPIC_API_KEY` in Vercel env
+- [x] (CC) `scripts/build-knowledge.ts` compiles content → knowledge —
+      outputs `src/content/knowledge.generated.ts` (a `.ts` export, not raw
+      `.md`, so both the Vite build and the Vercel Edge Function bundler can
+      import it directly with no raw-text loader); wired into `prebuild`
+- [x] (CC) `api/chat.ts` serverless endpoint (streaming, rate-limited) —
+      Vercel Edge Function; validates input (role/length/turn-count),
+      best-effort in-memory per-IP rate limit (`api/_lib/rateLimit.ts`,
+      ~10 msgs/min), never leaks the key or system prompt, friendly fallback
+      on provider errors
+- [x] (CC) LLM provider adapter (`api/_lib/llm.ts`) — **provider is OpenAI
+      `gpt-4o-mini`, not Anthropic Claude** (Adarsh's explicit call, made
+      after weighing cost/latency for this small grounded-Q&A task on a
+      public endpoint — see ARCHITECTURE.md ADR-004). Isolated behind this
+      one file per CLAUDE.md §3's swappability requirement.
+- [x] (CC) ChatWidget UI (launcher, streaming, suggested prompts, fallback) —
+      `src/components/chat/{ChatLauncher,ChatPanel,ChatMessage}.tsx` +
+      `src/hooks/useChat.ts`; code-split (ChatPanel lazy-loads on first
+      open); wired into `App.tsx`, `SiteNav`, and `CommandPalette` via a
+      tiny window-event bus (`src/lib/chatBus.ts`)
+- [x] (CC) Grounding + safety tests (15 sample questions) — `docs/chatbot-eval.md`
+      + `pnpm eval:chatbot` (`scripts/eval-chatbot.ts`); **not yet run**, needs
+      a real `OPENAI_API_KEY` in `.env.local` (none available in this
+      environment) — run once a key is available, before calling Phase 5 done
+- [ ] (A) Set `OPENAI_API_KEY` in Vercel env (renamed from `ANTHROPIC_API_KEY`
+      per the provider switch above)
 
 ## Phase 6 — Polish, a11y, SEO, performance
 

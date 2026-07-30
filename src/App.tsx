@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/common/ThemeProvider";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
 import { SiteNav } from "@/components/common/SiteNav";
 import { CommandPalette } from "@/components/common/CommandPalette";
+import { ChatLauncher } from "@/components/chat/ChatLauncher";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
@@ -37,6 +38,7 @@ function App() {
           <Certifications />
         </main>
         <Contact />
+        <ChatLauncher />
       </ThemeProvider>
     </MotionConfig>
   );

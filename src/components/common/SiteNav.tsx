@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { content } from "@/content";
 import { cn } from "@/lib/utils";
 import { SECTION_LINKS } from "@/lib/nav";
+import { requestOpenChat } from "@/lib/chatBus";
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -24,6 +25,14 @@ export function SiteNav() {
             {item.label}
           </a>
         ))}
+        <button
+          type="button"
+          onClick={requestOpenChat}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+        >
+          <Sparkles aria-hidden="true" className="size-3.5" />
+          Ask my AI
+        </button>
       </nav>
 
       <button
@@ -52,6 +61,17 @@ export function SiteNav() {
               {item.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              requestOpenChat();
+            }}
+            className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-left text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <Sparkles aria-hidden="true" className="size-3.5" />
+            Ask my AI
+          </button>
         </nav>
       )}
     </div>

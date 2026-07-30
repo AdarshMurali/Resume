@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Download, Mail, ArrowRight } from "lucide-react";
+import { Download, Mail, ArrowRight, Sparkles } from "lucide-react";
 import { content } from "@/content";
 import { SECTION_LINKS } from "@/lib/nav";
+import { requestOpenChat } from "@/lib/chatBus";
 import { GitHubIcon, LinkedInIcon } from "@/components/common/BrandIcons";
 import {
   Command,
@@ -64,6 +65,18 @@ export function CommandPalette() {
                   {item.label}
                 </CommandItem>
               ))}
+            </CommandGroup>
+            <CommandSeparator />
+            <CommandGroup heading="Assistant">
+              <CommandItem
+                onSelect={() => {
+                  setOpen(false);
+                  requestOpenChat();
+                }}
+              >
+                <Sparkles aria-hidden="true" className="size-4" />
+                Ask my AI
+              </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Links">
