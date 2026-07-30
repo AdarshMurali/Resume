@@ -39,7 +39,15 @@ export const experience: Experience[] = [
       "Combined AWS Redshift with Tableau to deliver real-time reporting, replacing slower batch-based dashboards.",
       "Owned BI delivery end-to-end — from requirements through dimensional modeling (SSIS/SSRS) to post-launch support.",
     ],
-    tech: ["Microsoft BI (SSIS, SSRS)", "SQL Server", "Tableau", "MongoDB", "AWS Redshift", "AWS DMS", "Dimensional Modelling"],
+    tech: [
+      "Microsoft BI (SSIS, SSRS)",
+      "SQL Server",
+      "Tableau",
+      "MongoDB",
+      "AWS Redshift",
+      "AWS DMS",
+      "Dimensional Modelling",
+    ],
   },
   {
     company: "Accenture (client: Shell)",
@@ -63,8 +71,7 @@ export const experience: Experience[] = [
     domain: "Finance",
     start: "2010-11",
     end: "2013-04",
-    summary:
-      "Financial reporting and risk analysis for Accenture's top 100 clients.",
+    summary: "Financial reporting and risk analysis for Accenture's top 100 clients.",
     highlights: [
       "Led ETL development (SSIS, SQL Server) for financial reporting and risk analysis serving Accenture's top 100 clients.",
       "Contributed to a firm-wide certification initiative, managing delivery-lead and solution-architect program content.",

@@ -61,7 +61,11 @@ export const skills: SkillCluster[] = [
   {
     category: "Ways of Working",
     skills: [
-      { name: "Agile delivery", level: 4, note: "Encora Labs & Wells Fargo were Agile; Accenture roles were not" },
+      {
+        name: "Agile delivery",
+        level: 4,
+        note: "Encora Labs & Wells Fargo were Agile; Accenture roles were not",
+      },
       { name: "Stakeholder collaboration", level: 4 },
     ],
   },

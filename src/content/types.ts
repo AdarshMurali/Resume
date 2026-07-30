@@ -8,11 +8,7 @@
  * See docs/CONTENT.md for the schema rationale and content checklist.
  */
 
-export type Domain =
-  | "Finance"
-  | "Energy"
-  | "Background Verification"
-  | "Investment Banking";
+export type Domain = "Finance" | "Energy" | "Background Verification" | "Investment Banking";
 
 /** Skill proficiency tier. 1 = familiar, 5 = expert. Optional — omit if unsure. */
 export type SkillLevel = 1 | 2 | 3 | 4 | 5;

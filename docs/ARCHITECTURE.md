@@ -30,6 +30,7 @@ persistent server.
 ```
 
 Why this shape:
+
 - **Static-first** = fast, cheap, secure, trivially cacheable, great Lighthouse.
 - The **only** dynamic need is the chatbot, and the only reason it needs a
   server at all is to keep the LLM API key secret and to add light rate
@@ -46,7 +47,7 @@ Why this shape:
 - **TypeScript:** typed content model is the backbone (see CONTENT.md).
 - **Tailwind + CSS variables:** rapid, consistent styling; variables drive
   theming (light/dark) without duplicating class sets.
-- **shadcn/ui (not a component *library*):** we copy components into the repo and
+- **shadcn/ui (not a component _library_):** we copy components into the repo and
   own them — no version lock-in, full styling control, accessible Radix base.
 - **Framer Motion:** declarative, respects reduced-motion, well documented.
 - **pnpm:** fast, disk-efficient; npm is an acceptable fallback.
@@ -99,7 +100,7 @@ real blog or many long case studies). Document the pivot as an ADR first.
   captured thumbnail images (lighter, faster). Prefer thumbnails + link for
   performance; embed 1–2 hero vizzes if desired.
 - **Jira (caution):** personal Jira boards are usually private and shouldn't be
-  exposed. Represent Jira contributions as a *narrative* (agile delivery, story
+  exposed. Represent Jira contributions as a _narrative_ (agile delivery, story
   throughput, ways of working) or screenshots you're comfortable sharing —
   **never** a live link to a private instance. See CONTENT.md.
 - **LinkedIn:** simple outbound link (LinkedIn blocks embedding/scraping).
@@ -141,14 +142,14 @@ real blog or many long case studies). Document the pivot as an ADR first.
 
 ## 9. Risks & mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| Chatbot hallucination | Strict grounding prompt; decline-on-unknown; tests |
-| LLM cost/abuse | Rate limit, token caps, short max output, message length cap |
-| GitHub API rate limit | Fetch at build, cache JSON, runtime fallback |
-| Jira privacy leak | Never link private boards; narrative representation only |
-| Over-engineering | Non-goals list in CLAUDE.md; ship MVP cut line first |
-| Content inaccuracy | `TODO(content)` markers; Adarsh proofreads before launch |
+| Risk                  | Mitigation                                                   |
+| --------------------- | ------------------------------------------------------------ |
+| Chatbot hallucination | Strict grounding prompt; decline-on-unknown; tests           |
+| LLM cost/abuse        | Rate limit, token caps, short max output, message length cap |
+| GitHub API rate limit | Fetch at build, cache JSON, runtime fallback                 |
+| Jira privacy leak     | Never link private boards; narrative representation only     |
+| Over-engineering      | Non-goals list in CLAUDE.md; ship MVP cut line first         |
+| Content inaccuracy    | `TODO(content)` markers; Adarsh proofreads before launch     |
 
 ---
 

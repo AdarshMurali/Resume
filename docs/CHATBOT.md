@@ -41,6 +41,7 @@ never sees the raw prompt or the API key.
 ## 3. Serverless endpoint (`api/chat.ts`)
 
 Contract:
+
 - **Request:** `POST /api/chat` with JSON `{ messages: {role, content}[] }`
   (user/assistant turns only; server owns the system prompt).
 - **Response:** streamed text (SSE or chunked). Client renders tokens as they

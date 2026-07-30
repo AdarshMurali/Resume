@@ -14,18 +14,17 @@ and tracks what content is still needed.
 
 ```ts
 // src/content/types.ts
-export type Domain =
-  | "Finance" | "Energy" | "Background Verification" | "Investment Banking";
+export type Domain = "Finance" | "Energy" | "Background Verification" | "Investment Banking";
 
 export interface Profile {
   name: string;
-  headline: string;          // e.g. "Data & BI Engineer · ETL · Python · AI"
-  valueProp: string;         // one strong sentence
+  headline: string; // e.g. "Data & BI Engineer · ETL · Python · AI"
+  valueProp: string; // one strong sentence
   location?: string;
-  summary: string;           // 2–3 sentences, first person
+  summary: string; // 2–3 sentences, first person
   domains: Domain[];
   avatarUrl?: string;
-  resumePdfUrl: string;      // "/resume.pdf"
+  resumePdfUrl: string; // "/resume.pdf"
   stats: { label: string; value: string }[]; // years, domains, tools, certs
 }
 
@@ -33,20 +32,24 @@ export interface Experience {
   company: string;
   role: string;
   domain: Domain;
-  start: string;             // "2023-01"
+  start: string; // "2023-01"
   end: string | "Present";
   location?: string;
   summary?: string;
-  highlights: string[];      // 2–4 bullets: action + measurable impact + tech
-  tech: string[];            // chips
+  highlights: string[]; // 2–4 bullets: action + measurable impact + tech
+  tech: string[]; // chips
 }
 
 export interface SkillCluster {
   category:
-    | "Data & ETL" | "BI & Visualization" | "Databases"
-    | "Python & Engineering" | "AI / ML" | "Cloud & DevOps"
+    | "Data & ETL"
+    | "BI & Visualization"
+    | "Databases"
+    | "Python & Engineering"
+    | "AI / ML"
+    | "Cloud & DevOps"
     | "Ways of Working";
-  skills: { name: string; level?: 1|2|3|4|5; note?: string }[];
+  skills: { name: string; level?: 1 | 2 | 3 | 4 | 5; note?: string }[];
 }
 
 export interface Project {
@@ -73,7 +76,7 @@ export interface Links {
   github: string;
   tableauPublic: string;
   email: string;
-  jira?: string;             // see §4 — likely omitted / narrative only
+  jira?: string; // see §4 — likely omitted / narrative only
 }
 ```
 
@@ -85,6 +88,7 @@ re-exports them. `scripts/build-knowledge.ts` serializes all of it to Markdown.
 ## 2. Content checklist (fill these — mark [x] when done)
 
 Profile
+
 - [x] Full name, headline, one-line value prop — `src/content/profile.ts`
 - [x] 2–3 sentence professional summary (first person)
 - [ ] Location (city/region — optional; left blank/hidden for now)
@@ -93,6 +97,7 @@ Profile
       TODO(content): file is ~1.5MB — needs compression/resizing in Phase 6.
 
 Experience (repeat per role — cover Finance, Energy, BGV, Investment Banking)
+
 - [x] Company, role/title, exact start–end dates — sourced from `TimeLine.xlsx`
       (Wells Fargo, Encora Labs/Accurate, Accenture/Shell, Accenture/TGP)
 - [x] Domain tag — all 4 CLAUDE.md domains covered, one role each
@@ -101,6 +106,7 @@ Experience (repeat per role — cover Finance, Energy, BGV, Investment Banking)
 - [ ] Location per role (not provided — left unset)
 
 Skills
+
 - [x] Confirm/adjust the cluster list and populate skills + proficiency tiers
       — real levels + years-of-experience sourced from the Tableau workbook's
       underlying `Tools.csv` skill-level data
@@ -108,6 +114,7 @@ Skills
       GCP/Docker) and Ways of Working (Agile) both populated with real data
 
 Projects
+
 - [x] GitHub username + the repo to feature — FinSight AI, confirmed public at
       `github.com/AdarshMurali/FinSight-AI`, `featured: true`
 - [x] Short blurb + tech per project
@@ -115,15 +122,18 @@ Projects
       none identified yet; revisit if Adarsh publishes more
 
 Certifications
+
 - [x] Each: name, issuer, year, verify/credential URL — all 8 extracted from
       the Tableau Public visual resume into `src/content/certifications.ts`.
       Logo assets still optional/unfilled.
 
 Links
+
 - [x] LinkedIn URL, GitHub URL, Tableau Public URL, contact email — see `src/content/links.ts`
 - [ ] Jira — decide representation (see §4)
 
 Assets
+
 - [x] `public/resume.pdf` (canonical downloadable PDF) — copied from
       `AdarshResume2026.pdf` at repo root
 - [x] Accent color preference — #e3ac14 (gold), confirmed 2026-07-30, see
@@ -135,11 +145,12 @@ Assets
 ## 3. Writing guidance for bullets
 
 Use the **action → impact → tech** shape, quantify where honest:
+
 - "Built an ETL pipeline in Python/SQL that cut month-end close reporting from
   6 hours to 20 minutes for the energy trading desk."
 - "Designed Tableau dashboards adopted by 40+ analysts to monitor KYC/AML
   background-verification throughput."
-Keep to real, verifiable facts. No inflation. Prefer specifics over adjectives.
+  Keep to real, verifiable facts. No inflation. Prefer specifics over adjectives.
 
 ---
 
@@ -147,6 +158,7 @@ Keep to real, verifiable facts. No inflation. Prefer specifics over adjectives.
 
 Personal/company Jira boards are almost always **private**; do not link a live
 board or expose ticket data. Options, best first:
+
 1. **Narrative** in About/Experience: agile delivery, sprint cadence, story
    throughput, cross-team coordination — as prose, no link.
 2. **Sanitized screenshots** you personally own and are comfortable sharing

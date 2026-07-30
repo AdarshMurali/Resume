@@ -21,12 +21,7 @@ export const profile: Profile = {
     "Dodd-Frank Act compliance and Section 165(d) living-will regulatory " +
     "reporting. I'm increasingly applying Python and agentic AI to extend " +
     "that same rigor into financial analytics tooling.",
-  domains: [
-    "Finance",
-    "Energy",
-    "Background Verification",
-    "Investment Banking",
-  ],
+  domains: ["Finance", "Energy", "Background Verification", "Investment Banking"],
   avatarUrl: "/avatar.jpg",
   resumePdfUrl: "/resume.pdf",
   stats: [

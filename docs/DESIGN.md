@@ -91,7 +91,7 @@ theme toggle + "Ask AI"). Section order:
 
 1. **Hero** — big name + role; one-sentence value prop; domain pills
    (Finance · Energy · Background Verification · Investment Banking); CTAs:
-   *Download résumé (PDF)*, *Ask my AI*, *Contact*. Optional headshot.
+   _Download résumé (PDF)_, _Ask my AI_, _Contact_. Optional headshot.
 2. **About** — short narrative + a **stat row** (years of experience, domains,
    core tools, certifications count).
 3. **Experience** — vertical **timeline**; each entry: role, company, dates,

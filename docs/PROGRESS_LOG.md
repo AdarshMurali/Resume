@@ -12,7 +12,47 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-30 (Phase 1 — scaffold & tooling)
+
+- Scaffolded Vite + React 18 + TypeScript by hand (create-vite defaults to
+  React 19; pinned to 18.3.1 per CLAUDE.md §3 — "do not swap without updating
+  ARCHITECTURE.md"). Installed with pnpm (installed globally, wasn't present).
+- Tailwind v4 wired via `@tailwindcss/vite` (no `tailwind.config.ts` needed —
+  v4 is CSS-first; tokens live in `src/styles/globals.css` `@theme inline`).
+- shadcn/ui initialized (`-t vite -b radix -p nova`, Radix primitives per
+  CLAUDE.md). Two gotchas hit along the way:
+  1. The CLI wrote `button.tsx`/`utils.ts` into a literal `./@/...` folder
+     instead of resolving the `@/*` alias to `src/*` (Windows path bug) —
+     moved manually. If `shadcn add <component>` does this again, check for
+     a stray `@/` folder at repo root.
+  2. `pnpm-workspace.yaml` (auto-created by pnpm for its own build-approval
+     config) made shadcn's init think this was a monorepo and fail with
+     "Could not load the workspace config" — fixed with `--no-monorepo`.
+- shadcn's init also overwrote the hand-written design tokens with its own
+  neutral "Nova" oklch palette. Resolved by keeping shadcn's neutral scale but
+  overriding `--primary`/`--ring` to the confirmed gold `#e3ac14`, and adding
+  a separate `--brand` token for standalone text/links/borders — the raw gold
+  is only ~2:1 contrast on white (fails WCAG AA 4.5:1), so light-mode `brand`
+  is a darkened amber (`#b45309`, ~5:1) while dark mode reuses the vivid gold
+  since dark backgrounds give it ~10:1 headroom. Rule of thumb going forward:
+  `bg-primary` + `text-primary-foreground` (filled buttons) can use the vivid
+  gold; anything rendering gold *as text/border directly on the page
+  background* should use `brand` instead.
+- Switched dark-mode mechanism from a `data-theme` attribute to toggling a
+  `.dark` class on `<html>`, to match shadcn/Tailwind v4's
+  `@custom-variant dark (&:is(.dark *))` convention that all future shadcn
+  components will rely on. Updated both `ThemeProvider.tsx` and the
+  anti-flash inline script in `index.html`.
+- Built the layout shell: sticky header with `ThemeToggle`, and 7 section
+  stubs (Hero/About/Experience/Skills/Projects/Certifications/Contact), all
+  reading from `@/content` — verified in-browser (light + dark, no console
+  errors) via Chrome DevTools MCP before calling it done.
+- `pnpm build`, `pnpm lint` (ESLint flat config + typescript-eslint +
+  react-hooks/react-refresh), and `tsc -b` all pass clean.
+- Not yet done: first Vercel deploy to prove the pipeline (next step).
+
 ## 2026-07-30
+
 - **Phase 0 complete.** Populated `profile.ts`, `experience.ts`, `skills.ts`,
   and `projects.ts` with real data, sourced from files Adarsh provided at
   `C:\Tableau Certification\Resume\` (TimeLine.xlsx for exact employment

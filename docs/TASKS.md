@@ -10,6 +10,7 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 ---
 
 ## Phase 0 — Discovery & content extraction
+
 - [x] (A) Add source résumé PDF to `public/resume.pdf`
 - [x] (CC) Extract facts from PDF/Tableau workbook into `src/content/*` first pass
 - [x] (A) Confirm job titles, companies, dates, achievement bullets per role
@@ -21,21 +22,24 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [x] (CC) Fill `docs/CONTENT.md` checklist; leave TODO(content) for gaps
 
 ## Phase 1 — Scaffold & tooling
-- [ ] (CC) Init Vite + React + TS
-- [ ] (CC) Add Tailwind + CSS variables + globals.css
-- [ ] (CC) Init shadcn/ui; add base components
-- [ ] (CC) ESLint + Prettier + path aliases (`@/`) + `.nvmrc`
-- [ ] (CC) Theme provider (light/dark/system) + toggle
-- [ ] (CC) Layout shell + empty section stubs
+
+- [x] (CC) Init Vite + React + TS (React 18 pinned per CLAUDE.md, not the npm-default 19)
+- [x] (CC) Add Tailwind + CSS variables + globals.css (Tailwind v4, `@theme inline`)
+- [x] (CC) Init shadcn/ui; add base components (Nova preset, Radix primitives, Button added)
+- [x] (CC) ESLint + Prettier + path aliases (`@/`) + `.nvmrc`
+- [x] (CC) Theme provider (light/dark/system) + toggle
+- [x] (CC) Layout shell + empty section stubs (Hero/About/Experience/Skills/Projects/Certifications/Contact, all reading from `src/content`)
 - [ ] (CC) First Vercel deploy (prove pipeline) → preview URL
 
 ## Phase 2 — Design system
+
 - [ ] (CC) Color tokens (light+dark), type scale, spacing, radius, shadow, motion
 - [ ] (CC) Primitives: SectionHeading, Card, Badge, Timeline, StatTile, SkillMeter
 - [ ] (CC) Kitchen-sink page to review the system in both themes
 - [ ] (A) Approve the visual direction
 
 ## Phase 3 — Core sections
+
 - [ ] (CC) Hero (name, role, value prop, CTAs, domain pills)
 - [ ] (CC) About + stat row
 - [ ] (CC) Experience timeline (expandable, tech chips, domain tags)
@@ -46,12 +50,14 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [ ] (CC) Responsive pass at 375/768/1024/1440
 
 ## Phase 4 — Integrations
+
 - [ ] (CC) GitHub repos via REST, cached at build + fallback
 - [ ] (CC) Tableau vizzes (thumbnails/embeds)
 - [ ] (CC) Jira representation per decision
 - [ ] (CC) Command palette (⌘K) wired to sections + links
 
 ## Phase 5 — AI assistant
+
 - [ ] (CC) `scripts/build-knowledge.ts` compiles content → knowledge
 - [ ] (CC) `api/chat.ts` serverless endpoint (streaming, rate-limited)
 - [ ] (CC) LLM provider adapter (`lib/llm.ts`)
@@ -60,6 +66,7 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [ ] (A) Set `ANTHROPIC_API_KEY` in Vercel env
 
 ## Phase 6 — Polish, a11y, SEO, performance
+
 - [ ] (CC) Print stylesheet → clean one-page PDF
 - [ ] (CC) OG/Twitter meta + generated OG image + JSON-LD Person
 - [ ] (CC) Favicon set, sitemap, robots
@@ -67,6 +74,7 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [ ] (CC) Lighthouse tuning to targets (≥95/100/100/100 mobile)
 
 ## Phase 7 — Launch
+
 - [ ] (A) Custom domain on Vercel
 - [ ] (CC) Prod env vars set; final deploy
 - [ ] (A) Proofread all content; remove every TODO(content)
@@ -77,6 +85,7 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 ---
 
 ## Backlog / nice-to-have (not scheduled)
+
 - [ ] Case-study deep pages (would trigger RAG reconsideration)
 - [ ] Multi-language toggle
 - [ ] Visitor "download vCard" button
