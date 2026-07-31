@@ -76,13 +76,19 @@
     <script>
       (function () {
         try {
+          // Default is dark for first-time visitors (no stored preference at
+          // all). An explicit "system" choice still follows the OS setting.
+          // See src/components/common/ThemeProvider.tsx, which must stay in
+          // sync with this default.
           var stored = localStorage.getItem("resume-theme");
-          var theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+          var theme;
+          if (stored === "light" || stored === "dark") {
+            theme = stored;
+          } else if (stored === "system") {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          } else {
+            theme = "dark";
+          }
           if (theme === "dark") document.documentElement.classList.add("dark");
         } catch (e) {}
       })();

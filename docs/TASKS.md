@@ -157,6 +157,28 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 - [ ] (A) Share the URL 🎉
 - [ ] (CC/A) (Optional) privacy-friendly analytics
 
+## Post-launch content updates (2026-07-31, requested after Phase 7 went live)
+
+Not part of the original phase plan — requested by Adarsh after seeing the
+live site. See docs/PROGRESS_LOG.md for full detail.
+
+- [x] (CC) Re-crop `public/avatar.jpg` — the Phase 7 center-crop cut off the
+      top of the head; redone as a proper head-and-shoulders crop from the
+      original (recovered from git history)
+- [x] (CC) Default theme is now dark for first-time visitors (was "system") —
+      `index.html`'s blocking script + `ThemeProvider.tsx`
+- [x] (CC) Renamed "Projects" → "Personal Projects" with a clarifying
+      description, so it reads as independent work, not employer deliverables
+- [x] (CC) Added MarginMaestro as a second personal project (`inProgress`,
+      `privateRepo` — see docs/CONTENT.md §4 for the no-public-link rule)
+- [x] (CC) Added a new "Agentic AI" section between Projects and
+      Certifications — `src/content/agenticAI.ts`, `AgenticAI.tsx`, nav entry
+- [ ] (A) Confirm the Agentic AI content is accurate/complete — a few things
+      were surfaced as candidates during planning (prompt engineering, vector
+      DBs/embeddings, tool use, multi-agent orchestration, other AI coding
+      tools) but not confirmed, so not added; also confirm the framing of
+      "this site was built with Claude Code" is something you want disclosed
+
 ---
 
 ## Backlog / nice-to-have (not scheduled)

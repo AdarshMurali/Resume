@@ -1,4 +1,4 @@
-import { ExternalLink, Star, Clock, ChartArea } from "lucide-react";
+import { ExternalLink, Star, Clock, ChartArea, Lock } from "lucide-react";
 import { content } from "@/content";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
@@ -12,16 +12,21 @@ export function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-3xl px-6 py-16">
       <Reveal>
-        <SectionHeading eyebrow="Projects" title="Featured work" />
+        <SectionHeading
+          eyebrow="Personal Projects"
+          title="Independent work"
+          description="Built on my own time, outside of my employer, as hands-on exploration of tools and approaches beyond what my day job requires."
+        />
         <div className="flex flex-col gap-4">
           {content.projects.map((project) => {
-            const href = project.links.github ?? project.links.demo ?? project.links.tableau;
+            const showGithub = project.links.github && !project.privateRepo;
             return (
               <Card key={project.title} className="transition-colors hover:ring-brand/40">
                 <CardHeader>
                   <div className="flex flex-wrap items-center gap-2">
                     <CardTitle>{project.title}</CardTitle>
                     {project.featured && <Badge>Featured</Badge>}
+                    {project.inProgress && <Badge variant="secondary">In Progress</Badge>}
                   </div>
                   <CardDescription>{project.blurb}</CardDescription>
                 </CardHeader>
@@ -46,20 +51,48 @@ export function Projects() {
                       </span>
                     </div>
                   )}
-                  {href && (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-brand hover:underline"
-                    >
-                      {project.links.github ? (
-                        <GitHubIcon aria-hidden="true" className="size-4" />
-                      ) : (
-                        <ExternalLink aria-hidden="true" className="size-4" />
+                  {(showGithub || project.links.demo || project.links.tableau) && (
+                    <div className="flex flex-wrap gap-4">
+                      {showGithub && (
+                        <a
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-brand hover:underline"
+                        >
+                          <GitHubIcon aria-hidden="true" className="size-4" />
+                          View on GitHub
+                        </a>
                       )}
-                      View on {project.links.github ? "GitHub" : "the web"}
-                    </a>
+                      {project.links.demo && (
+                        <a
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-brand hover:underline"
+                        >
+                          <ExternalLink aria-hidden="true" className="size-4" />
+                          Visit the app
+                        </a>
+                      )}
+                      {project.links.tableau && (
+                        <a
+                          href={project.links.tableau}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-brand hover:underline"
+                        >
+                          <ExternalLink aria-hidden="true" className="size-4" />
+                          View on the web
+                        </a>
+                      )}
+                    </div>
+                  )}
+                  {project.privateRepo && (
+                    <p className="inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground">
+                      <Lock aria-hidden="true" className="size-3.5" />
+                      Private repository — happy to walk through the code in an interview.
+                    </p>
                   )}
                 </CardContent>
               </Card>

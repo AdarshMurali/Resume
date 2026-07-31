@@ -12,6 +12,63 @@ keep it honest and current. Format:
 
 ---
 
+## 2026-07-31 (Post-launch content updates, requested after Phase 7 went live)
+- **Avatar re-crop**: Adarsh flagged the Phase 7 crop as wrong — the source
+  photo is a 3/4-body studio portrait with the face in the *upper* third of
+  the frame, not vertically centered, so the blind center-crop cut off the
+  top of the head. Recovered the original 4912×7360 file from git history
+  (`git show 4678b0e:public/avatar.jpg`), visually inspected it, and redid
+  the crop as a proper head-and-shoulders framing (hand-picked crop region:
+  x=1276, y=350, 2600×2600 square) — verified by screenshot before saving.
+  21KB, same JPEG q85 approach as before.
+- **Default theme is now dark**: changed both `index.html`'s anti-flash
+  blocking script and `ThemeProvider.tsx`'s initial state so a first-time
+  visitor (no stored `resume-theme`) lands on dark, not "system". An
+  explicit "system" choice still follows the OS setting — only the
+  no-preference-stored default changed. Verified by clearing localStorage
+  and reloading with the OS emulated as light: site still loads dark.
+- **"Projects" → "Personal Projects"**: Adarsh pointed out the section gave
+  no signal these are independent work, not Wells Fargo deliverables.
+  Renamed the eyebrow and added a one-line clarifying description under the
+  heading (`SectionHeading` already supported a `description` prop, unused
+  here before).
+- **New project: MarginMaestro.** Adarsh described it as an in-progress
+  agentic margin-call automation platform and pointed at
+  `github.com/AdarshMurali/MarginMaestro` for details. Fetched the repo via
+  `gh api` — **it's private** — and pulled the real description, tech stack
+  (Python/Kafka/Terraform/Docker), and status (README says "🚧 In active
+  development — Phase 0, foundations") from its README rather than
+  guessing. Added `Project.inProgress` and `Project.privateRepo` fields:
+  the project card shows an "In Progress" badge and, since the repo is
+  private, a "Private repository — happy to walk through the code in an
+  interview" note instead of a link that would 404 for visitors — same
+  privacy rule already established for Jira in `docs/CONTENT.md` §4.
+- **New "Agentic AI" section**, positioned between Personal Projects and
+  Certifications per Adarsh's explicit request (nav, sticky header, mobile
+  menu, and command palette all pick it up automatically from
+  `src/lib/nav.ts`). New content type `AgenticAIContent`
+  (`src/content/agenticAI.ts`) with two groups — "Building with agentic AI"
+  (MCP, RAG pipelines, LLM agent orchestration) and "AI-assisted
+  development" (Claude Code, Claude Skills, Claude Code plugins, GitHub
+  Copilot, DBCode) — plus a "Currently pursuing: Claude Certified Architect
+  (Foundations)" one-liner, all from facts Adarsh gave directly rather than
+  invented. The intro paragraph explicitly notes this résumé site itself
+  was built with Claude Code — a true, verifiable claim, but flagged for
+  Adarsh to confirm he's comfortable disclosing it.
+- Extended `scripts/build-knowledge.ts` so the chatbot's knowledge includes
+  the renamed Projects section (with in-progress/private-repo status) and
+  the new Agentic AI section.
+- Suggested (not added, pending confirmation) additional Agentic AI
+  candidates: prompt engineering, vector DBs/embeddings, tool use/function
+  calling, multi-agent orchestration, fine-tuning/eval, other AI coding
+  tools (Cursor, Windsurf).
+- `pnpm build` and `pnpm lint` clean. Verified visually at 1440px and mobile
+  widths, dark mode default confirmed in the actual production build (not
+  just dev).
+- TODO(content): confirm from Adarsh — (1) any missed Agentic AI items from
+  the suggestions list above, (2) comfort with the "built with Claude Code"
+  disclosure, (3) whether MarginMaestro should also be `featured`.
+
 ## 2026-07-30 (Phase 7 — launch, in progress)
 - Fixed a leftover Phase 6 item: `docs/CONTENT.md` flagged `public/avatar.jpg`
   as an unoptimized 4912×7360 (36MP) 1.5MB DSLR export needing

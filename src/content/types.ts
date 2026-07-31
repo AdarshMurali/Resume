@@ -102,6 +102,10 @@ export interface Project {
   links: ProjectLinks;
   /** Feature this project prominently in the grid. */
   featured?: boolean;
+  /** Still being built — renders an "In Progress" badge. */
+  inProgress?: boolean;
+  /** Repo isn't public — don't render a link that 404s for visitors. */
+  privateRepo?: boolean;
   /** Filled by the GitHub fetch step; do not hand-edit. */
   repoStats?: RepoStats;
 }
@@ -115,6 +119,25 @@ export interface Certification {
   credentialUrl?: string;
   /** Path under /public or remote logo URL. */
   logoUrl?: string;
+}
+
+export interface AgenticAIItem {
+  name: string;
+  /** Short note on how it's actually been used — keep it concrete, not a buzzword list. */
+  note?: string;
+}
+
+export interface AgenticAIGroup {
+  category: string;
+  items: AgenticAIItem[];
+}
+
+export interface AgenticAIContent {
+  /** 1-2 sentence intro tying this section to real, verifiable work. */
+  intro: string;
+  groups: AgenticAIGroup[];
+  /** One-liner about an in-progress certification. Omit if none. */
+  pursuing?: string;
 }
 
 export interface Links {
@@ -132,6 +155,7 @@ export interface ResumeContent {
   experience: Experience[];
   skills: SkillCluster[];
   projects: Project[];
+  agenticAI: AgenticAIContent;
   certifications: Certification[];
   links: Links;
 }

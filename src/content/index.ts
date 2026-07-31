@@ -11,6 +11,7 @@ import { profile } from "./profile";
 import { experience } from "./experience";
 import { skills } from "./skills";
 import { projects as rawProjects } from "./projects";
+import { agenticAI } from "./agenticAI";
 import { certifications } from "./certifications";
 import { links } from "./links";
 import githubCache from "./github-cache.json";
@@ -31,10 +32,11 @@ export const content: ResumeContent = {
   experience,
   skills,
   projects,
+  agenticAI,
   certifications,
   links,
 };
 
 // Named re-exports for convenience.
-export { profile, experience, skills, projects, certifications, links };
+export { profile, experience, skills, projects, agenticAI, certifications, links };
 export * from "./types";

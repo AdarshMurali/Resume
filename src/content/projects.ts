@@ -29,7 +29,29 @@ export const projects: Project[] = [
     domain: "Investment Banking",
     links: {
       github: "https://github.com/AdarshMurali/FinSight-AI",
+      demo: "https://www.fin-sightai.space/",
     },
     featured: true,
+  },
+  {
+    title: "MarginMaestro — Agentic Margin Call Automation",
+    blurb:
+      "An agentic, event-driven platform that automates the end-to-end margin call " +
+      "lifecycle — from market event to client notification, escalation, and audit — " +
+      "using LLM agent orchestration, a RAG pipeline over legal and policy documents, " +
+      "and a real-time Kafka streaming backbone.",
+    tech: [
+      "Python",
+      "Apache Kafka",
+      "Terraform",
+      "Docker",
+      "RAG Pipeline",
+      "LLM Agent Orchestration",
+      "CI/CD",
+    ],
+    domain: "Investment Banking",
+    links: {},
+    inProgress: true,
+    privateRepo: true,
   },
 ];

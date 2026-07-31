@@ -3,6 +3,10 @@ import type { ReactNode } from "react";
 import { ThemeContext, type Theme } from "@/hooks/use-theme";
 
 const STORAGE_KEY = "resume-theme";
+// First-time visitors (no stored preference) default to dark. An explicit
+// "system" choice still follows the OS setting. Keep this in sync with the
+// blocking anti-flash script in index.html.
+const DEFAULT_THEME: Theme = "dark";
 
 function getSystemTheme(): "light" | "dark" {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -11,7 +15,7 @@ function getSystemTheme(): "light" | "dark" {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
+    return stored === "light" || stored === "dark" || stored === "system" ? stored : DEFAULT_THEME;
   });
   const [systemTheme, setSystemTheme] = useState<"light" | "dark">(getSystemTheme);
 
