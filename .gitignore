@@ -21,8 +21,6 @@ Thumbs.db
 # Claude Code local settings (machine-specific permissions)
 .claude/settings.local.json
 
-# Generated chatbot knowledge file (regenerate via scripts/build-knowledge.ts)
-src/content/knowledge.generated.md
 
 # Logs
 npm-debug.log*

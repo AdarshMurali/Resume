@@ -1,67 +1,72 @@
 import type { SkillCluster } from "./types";
 
 /**
- * skills.ts — grouped skills. Adjust clusters/skills and set proficiency tiers
- * (1–5, optional). Prefer meaningful grouping over a long flat list. Pull the
- * full set from your résumé PDF. See docs/DESIGN.md §6 (Skills section).
+ * skills.ts — grouped skills with real proficiency tiers.
+ * Levels and years-of-experience notes sourced from the underlying Tableau
+ * data source (Tools.csv skill-level chart + Tools_Used_Daily.xlsx usage
+ * split). See docs/PROGRESS_LOG.md 2026-07-30 for provenance.
  */
 export const skills: SkillCluster[] = [
   {
-    category: "Data & ETL",
-    skills: [
-      { name: "ETL pipeline development", level: 5, note: "core strength" },
-      { name: "Data modeling / warehousing", level: 4 },
-      { name: "Data quality & validation", level: 4 },
-      // TODO(content): add specific ETL tools you use (e.g. SSIS, Informatica,
-      // dbt, Airflow, Talend) with tiers.
-    ],
-  },
-  {
     category: "BI & Visualization",
     skills: [
-      { name: "Tableau", level: 5, note: "public portfolio" },
+      { name: "Tableau", level: 4, note: "8+ certs; ~4 yrs as primary BI tool" },
+      { name: "Microsoft BI (SSIS/SSRS)", level: 4, note: "~6 yrs" },
       { name: "Dashboard design", level: 4 },
-      // TODO(content): Power BI? Looker? add here.
     ],
   },
   {
     category: "Databases",
     skills: [
-      { name: "SQL", level: 5 },
-      // TODO(content): which engines — SQL Server, PostgreSQL, Oracle, MySQL,
-      // Snowflake, BigQuery? add with tiers.
+      { name: "SQL Server", level: 4, note: "~8 yrs" },
+      { name: "AWS Redshift", level: 3, note: "real-time reporting at Accurate Background" },
+      { name: "MongoDB", level: 3 },
+    ],
+  },
+  {
+    category: "Data & ETL",
+    skills: [
+      { name: "Informatica", level: 3, note: "~2 yrs" },
+      { name: "Apache Spark", level: 3, note: "streaming & big data, ~1 yr" },
+      { name: "Hadoop", level: 2, note: "batch storage for audit/reporting" },
+      { name: "SSIS", level: 4 },
     ],
   },
   {
     category: "Python & Engineering",
     skills: [
-      { name: "Python", level: 4 },
-      { name: "pandas / data wrangling", level: 4 },
-      // TODO(content): APIs, testing, Git, scripting/automation.
+      { name: "Python", level: 3, note: "~2.5 yrs — pandas, Flask, NumPy, unit testing" },
+      { name: "GitHub Copilot", level: 3, note: "~2 yrs, daily driver" },
     ],
   },
   {
     category: "AI / ML",
     skills: [
-      // TODO(content): be specific & honest — LLM apps, RAG, scikit-learn,
-      // prompt engineering, forecasting, etc.
-      { name: "Applied AI / LLM tooling", level: 3 },
+      {
+        name: "Applied AI / agentic tooling",
+        level: 3,
+        note: "hands-on via FinSight AI — GPT-4o function calling, RAG (ChromaDB)",
+      },
     ],
   },
   {
     category: "Cloud & DevOps",
     skills: [
-      // TODO(content): AWS/Azure/GCP services, CI/CD, containers — or remove
-      // this cluster if not applicable.
-      { name: "TODO(content): cloud platform", level: 2 },
+      { name: "AWS", level: 3, note: "~1 yr — Redshift, DMS" },
+      { name: "Azure", level: 2, note: "~0.5 yr — DevOps Hackathon 2023" },
+      { name: "Google Cloud", level: 2, note: "~0.5 yr — Vertex AI Hackathon 2024" },
+      { name: "Docker", level: 2, note: "~0.5 yr" },
     ],
   },
   {
     category: "Ways of Working",
     skills: [
-      { name: "Agile / Jira", level: 4, note: "sprint delivery" },
+      {
+        name: "Agile delivery",
+        level: 4,
+        note: "Encora Labs & Wells Fargo were Agile; Accenture roles were not",
+      },
       { name: "Stakeholder collaboration", level: 4 },
-      // Jira lives here as a narrative skill — see docs/CONTENT.md §4.
     ],
   },
 ];

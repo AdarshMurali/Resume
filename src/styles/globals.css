@@ -1,0 +1,285 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design tokens — see docs/DESIGN.md §2.
+ * Base neutral scale is shadcn's "Nova" preset (oklch). `--primary` and
+ * `--ring` are overridden to the confirmed brand accent, #e3ac14 (gold) —
+ * see docs/PROGRESS_LOG.md 2026-07-30. shadcn's own `--accent` token stays
+ * neutral; it's used internally for subtle hover backgrounds (menus, etc.),
+ * distinct from `--primary` which drives buttons, links, and focus rings.
+ */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: #e3ac14;
+  --primary-foreground: oklch(0.205 0 0);
+  /*
+   * Darkened for standalone text/links/borders on light backgrounds — the
+   * raw --primary gold is ~2:1 contrast on white (fails WCAG AA's 4.5:1 for
+   * text and even the 3:1 non-text minimum). This amber passes at ~5:1.
+   * Only needed in light mode; dark mode reuses --primary (see .dark below).
+   */
+  --brand: #b45309;
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --border: oklch(0.922 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: oklch(0.922 0 0);
+  --ring: #e3ac14;
+
+  /* One radius token per DESIGN.md §4 (12-16px); shadcn's derived radius-sm/lg/xl/... all scale off this. */
+  --radius: 0.75rem;
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: #eab836;
+  --primary-foreground: oklch(0.145 0 0);
+  /* Dark backgrounds give the vivid gold plenty of contrast headroom (~10:1) — no darkening needed. */
+  --brand: var(--primary);
+
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --border: oklch(1 0 0 / 10%);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --input: oklch(1 0 0 / 15%);
+  --ring: #eab836;
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-brand: var(--brand);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --font-sans: "Geist Variable", sans-serif;
+  --font-heading: var(--font-sans);
+
+  /*
+   * Fluid type scale — see DESIGN.md §3. One family (Geist) covers both
+   * heading and body; it reads cleanly at display sizes and stays neutral
+   * for body text, so a second family wasn't worth the extra font-load
+   * weight. `body`, `small`, and `caption` use Tailwind's stock
+   * text-base/text-sm/text-xs — no custom token needed there.
+   */
+  --text-display: clamp(2.75rem, 2.1rem + 2.6vw, 4.25rem);
+  --text-display--line-height: 1.05;
+  --text-display--font-weight: 700;
+  --text-h1: clamp(2.25rem, 1.85rem + 1.6vw, 3.25rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--font-weight: 700;
+  --text-h2: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 600;
+  --text-h3: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 600;
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+  --text-body-lg--line-height: 1.6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 4.5rem; /* clears the sticky header when jumping to a section */
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Print stylesheet — see docs/DESIGN.md §10. Cmd/Ctrl+P should produce a
+ * clean, traditional one-page résumé: no nav/chat/toggles, no motion, black
+ * on white regardless of the active theme, and external links spelled out
+ * as text since a printed page has no clickable hrefs.
+ */
+@media print {
+  /* Force light-theme tokens for print, whether the site is in dark mode or not. */
+  html.dark,
+  html {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: #e3ac14;
+    --primary-foreground: oklch(0.205 0 0);
+    --brand: #b45309;
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --border: oklch(0.85 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.35 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+  }
+
+  /* Chrome: sticky nav (links, ⌘K trigger, theme toggle) and the chat launcher. */
+  header,
+  [aria-label="Ask my AI assistant about Adarsh's experience"],
+  [data-slot="dialog-overlay"],
+  [data-slot="dialog-content"],
+  [data-slot="sheet-overlay"],
+  [data-slot="sheet-content"] {
+    display: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  section {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  /* Spell out external links as plain text — a printed page has no hrefs. */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: 400;
+    color: oklch(0.35 0 0);
+  }
+}

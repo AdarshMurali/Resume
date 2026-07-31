@@ -11,7 +11,7 @@
 An **interactive, single-page web resume** for **Adarsh**, a software engineer
 whose experience spans **finance, energy, background verification, and
 (currently) investment banking**. The site is shared as a single URL with
-recruiters and hiring managers — it *is* the resume.
+recruiters and hiring managers — it _is_ the resume.
 
 Core goals, in priority order:
 
@@ -42,7 +42,7 @@ Non-goals (do **not** build these unless explicitly asked):
   beautiful beats a bloated one. When trading off, pick polish.
 - **Content is data.** All resume content lives in typed files under
   `src/content/`. Components never hardcode resume facts. One edit updates the
-  site *and* the chatbot's knowledge.
+  site _and_ the chatbot's knowledge.
 - **Ship fast.** Target a working, deployable site quickly. Prefer proven,
   boring, well-documented libraries over novel ones. Latest tech is welcome
   **only when it adds real value** (see §5), never for novelty.
@@ -56,19 +56,19 @@ Non-goals (do **not** build these unless explicitly asked):
 
 ## 3. Tech stack (decided — do not swap without updating ARCHITECTURE.md)
 
-| Layer            | Choice                                             |
-|------------------|----------------------------------------------------|
-| Build tool       | **Vite**                                           |
-| Framework        | **React 18 + TypeScript**                          |
-| Styling          | **Tailwind CSS** + CSS variables for theming       |
-| Components       | **shadcn/ui** (Radix primitives) — copy-in, owned  |
-| Animation        | **Framer Motion** (`motion`)                       |
-| Icons            | **lucide-react**                                   |
-| Routing          | Single page + scroll sections (no router needed)   |
-| Chatbot backend  | **Vercel Serverless Function** (`/api/chat`)       |
-| LLM              | Anthropic Claude (via `@anthropic-ai/sdk`) *       |
-| Hosting          | **Vercel** (free tier, custom domain, HTTPS)       |
-| Package manager  | **pnpm** (fallback: npm)                           |
+| Layer           | Choice                                            |
+| --------------- | ------------------------------------------------- |
+| Build tool      | **Vite**                                          |
+| Framework       | **React 18 + TypeScript**                         |
+| Styling         | **Tailwind CSS** + CSS variables for theming      |
+| Components      | **shadcn/ui** (Radix primitives) — copy-in, owned |
+| Animation       | **Framer Motion** (`motion`)                      |
+| Icons           | **lucide-react**                                  |
+| Routing         | Single page + scroll sections (no router needed)  |
+| Chatbot backend | **Vercel Serverless Function** (`/api/chat`)      |
+| LLM             | OpenAI `gpt-4o-mini` (via `openai` SDK) *         |
+| Hosting         | **Vercel** (free tier, custom domain, HTTPS)      |
+| Package manager | **pnpm** (fallback: npm)                          |
 
 \* LLM provider is swappable; see CHATBOT.md. Keep the call behind one adapter
 module so it can change without touching the UI.
@@ -92,7 +92,7 @@ The user explicitly asked to use RAG **only if it adds value**. It does not here
   provided facts, to decline politely and offer contact details when asked
   something not covered, and never to fabricate.
 - **Revisit trigger:** if the corpus ever grows large (e.g. a real blog, dozens
-  of long case studies > ~40k tokens), *then* introduce embeddings + retrieval.
+  of long case studies > ~40k tokens), _then_ introduce embeddings + retrieval.
   Document that pivot in ARCHITECTURE.md before doing it.
 
 See `docs/CHATBOT.md` for the full spec, system prompt, and API contract.

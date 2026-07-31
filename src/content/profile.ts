@@ -2,36 +2,32 @@ import type { Profile } from "./types";
 
 /**
  * profile.ts — top-level identity, summary, and headline stats.
- * Replace the TODO(content) values with real ones. See docs/CONTENT.md.
+ * Sourced from RESUME.txt, TimeLine.xlsx, and the Tableau Public visual resume
+ * (see docs/PROGRESS_LOG.md 2026-07-30 for provenance).
  */
 export const profile: Profile = {
-  name: "Adarsh", // TODO(content): full name as you want it displayed
-  headline: "Data & BI Engineer · ETL · Python · AI", // TODO(content): refine
+  name: "Adarsh Murali",
+  headline: "Data Engineer, Capital Markets · Python · Big Data · Applied AI",
   valueProp:
-    // TODO(content): one strong sentence — who you help and how.
-    "I build data pipelines, BI dashboards, and AI-assisted tooling that turn " +
-    "messy operational data into decisions — across finance, energy, background " +
-    "verification, and investment banking.",
-  location: "", // TODO(content): city/region, or leave "" to hide
+    "I build the ETL pipelines, Python-driven data engineering, and BI " +
+    "systems that keep regulatory reporting honest — now extending that " +
+    "rigor with big data tooling (Spark, Hadoop) and agentic AI for " +
+    "financial analysis.",
+  location: "",
   summary:
-    // TODO(content): 2–3 sentences, first person.
-    "Software engineer specializing in data engineering and business " +
-    "intelligence. I've delivered ETL pipelines, databases, and Tableau/BI " +
-    "solutions across multiple regulated industries, and I'm increasingly " +
-    "applying Python and AI/ML to automate and augment analytics work.",
-  domains: [
-    "Finance",
-    "Energy",
-    "Background Verification",
-    "Investment Banking",
-  ],
-  // avatarUrl: "/avatar.jpg", // TODO(content): optional headshot in /public
-  resumePdfUrl: "/resume.pdf", // TODO(content): drop your PDF at public/resume.pdf
+    "I'm a data engineer with 15+ years of experience across capital " +
+    "markets, energy, and background verification. At Wells Fargo's Capital " +
+    "Markets Division, I build ETL pipelines and BI systems supporting " +
+    "Dodd-Frank Act compliance and Section 165(d) living-will regulatory " +
+    "reporting. I'm increasingly applying Python and agentic AI to extend " +
+    "that same rigor into financial analytics tooling.",
+  domains: ["Finance", "Energy", "Background Verification", "Investment Banking"],
+  avatarUrl: "/avatar.jpg",
+  resumePdfUrl: "/resume.pdf",
   stats: [
-    // TODO(content): make these real; keep to 3–4 punchy numbers.
-    { label: "Years of experience", value: "X+" },
+    { label: "Total experience", value: "15+ yrs" },
     { label: "Industry domains", value: "4" },
+    { label: "Certifications", value: "8" },
     { label: "Core tools", value: "ETL · SQL · Tableau · Python" },
-    { label: "Certifications", value: "X" },
   ],
 };

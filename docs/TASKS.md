@@ -10,73 +10,157 @@ Legend for owners: **CC** = Claude Code, **A** = Adarsh (content/decisions).
 ---
 
 ## Phase 0 — Discovery & content extraction
-- [ ] (A) Add source résumé PDF to `public/resume.pdf`
-- [ ] (CC) Extract facts from PDF into `src/content/*` first pass
-- [ ] (A) Confirm job titles, companies, dates, achievement bullets per role
-- [ ] (A) Provide GitHub username + repos to feature
-- [ ] (A) Provide Tableau Public URL + vizzes to showcase
-- [ ] (A) Decide Jira representation (narrative vs screenshots vs omit)
-- [ ] (A) Provide LinkedIn URL, certifications, contact email
-- [ ] (A) Accent color preference / headshot (optional)
-- [ ] (CC) Fill `docs/CONTENT.md` checklist; leave TODO(content) for gaps
+
+- [x] (A) Add source résumé PDF to `public/resume.pdf`
+- [x] (CC) Extract facts from PDF/Tableau workbook into `src/content/*` first pass
+- [x] (A) Confirm job titles, companies, dates, achievement bullets per role
+- [x] (A) Provide GitHub username + repos to feature (AdarshMurali/FinSight-AI)
+- [x] (A) Provide Tableau Public URL + vizzes to showcase
+- [ ] (A) Decide Jira representation (narrative vs screenshots vs omit) — default (omit, narrative-only) still in effect, not explicitly confirmed
+- [x] (A) Provide LinkedIn URL, certifications, contact email
+- [x] (A) Accent color preference (#e3ac14) / headshot (public/avatar.jpg)
+- [x] (CC) Fill `docs/CONTENT.md` checklist; leave TODO(content) for gaps
 
 ## Phase 1 — Scaffold & tooling
-- [ ] (CC) Init Vite + React + TS
-- [ ] (CC) Add Tailwind + CSS variables + globals.css
-- [ ] (CC) Init shadcn/ui; add base components
-- [ ] (CC) ESLint + Prettier + path aliases (`@/`) + `.nvmrc`
-- [ ] (CC) Theme provider (light/dark/system) + toggle
-- [ ] (CC) Layout shell + empty section stubs
-- [ ] (CC) First Vercel deploy (prove pipeline) → preview URL
+
+- [x] (CC) Init Vite + React + TS (React 18 pinned per CLAUDE.md, not the npm-default 19)
+- [x] (CC) Add Tailwind + CSS variables + globals.css (Tailwind v4, `@theme inline`)
+- [x] (CC) Init shadcn/ui; add base components (Nova preset, Radix primitives, Button added)
+- [x] (CC) ESLint + Prettier + path aliases (`@/`) + `.nvmrc`
+- [x] (CC) Theme provider (light/dark/system) + toggle
+- [x] (CC) Layout shell + empty section stubs (Hero/About/Experience/Skills/Projects/Certifications/Contact, all reading from `src/content`)
+- [x] (CC) First Vercel deploy (prove pipeline) → https://adarsh-resume-sepia.vercel.app
 
 ## Phase 2 — Design system
-- [ ] (CC) Color tokens (light+dark), type scale, spacing, radius, shadow, motion
-- [ ] (CC) Primitives: SectionHeading, Card, Badge, Timeline, StatTile, SkillMeter
-- [ ] (CC) Kitchen-sink page to review the system in both themes
+
+- [x] (CC) Color tokens (light+dark), type scale, spacing, radius, shadow, motion
+- [x] (CC) Primitives: SectionHeading, Card, Badge, Timeline, StatTile, SkillMeter
+- [x] (CC) Kitchen-sink page to review the system in both themes (`/kitchen-sink`, dev-only)
 - [ ] (A) Approve the visual direction
 
 ## Phase 3 — Core sections
-- [ ] (CC) Hero (name, role, value prop, CTAs, domain pills)
-- [ ] (CC) About + stat row
-- [ ] (CC) Experience timeline (expandable, tech chips, domain tags)
-- [ ] (CC) Skills clusters (tiers/meters)
-- [ ] (CC) Projects grid (cards + links)
-- [ ] (CC) Certifications grid
-- [ ] (CC) Contact / footer
-- [ ] (CC) Responsive pass at 375/768/1024/1440
+
+- [x] (CC) Hero (name, role, value prop, CTAs, domain pills) — headshot, download résumé + contact CTAs, 4 domain pills
+- [x] (CC) About + stat row (StatTile primitive)
+- [x] (CC) Experience timeline (expandable, tech chips, domain tags) — Timeline + Collapsible, highlights + tech Badges on expand
+- [x] (CC) Skills clusters (tiers/meters) — Card per category, SkillMeter per skill
+- [x] (CC) Projects grid (cards + links) — Card, tech Badges, Featured badge, GitHub link
+- [x] (CC) Certifications grid — Card grid, verify links
+- [x] (CC) Contact / footer — icon links (custom inline SVGs for GitHub/LinkedIn — lucide-react v1 dropped brand logos), résumé download repeated
+- [x] (CC) Sticky top nav with section anchors — DESIGN.md §6 called for this from
+      the start but it never got its own checklist line (only the ⌘K palette did,
+      in Phase 4); added retroactively after Adarsh flagged the gap. Desktop:
+      inline links; mobile (<640px): hamburger toggles a dropdown. "Ask my AI"
+      nav item still pending Phase 5 (chatbot doesn't exist yet)
+- [x] (CC) Responsive pass at 375/768/1024/1440 — verified both themes via Chrome DevTools
 
 ## Phase 4 — Integrations
-- [ ] (CC) GitHub repos via REST, cached at build + fallback
-- [ ] (CC) Tableau vizzes (thumbnails/embeds)
-- [ ] (CC) Jira representation per decision
-- [ ] (CC) Command palette (⌘K) wired to sections + links
+
+- [x] (CC) GitHub repos via REST, cached at build + fallback — `scripts/fetch-github.ts`
+      runs via `prebuild`, writes `src/content/github-cache.json`; failures keep the
+      previous cached entry rather than breaking the build
+- [x] (CC) Tableau vizzes (thumbnails/embeds) — no image embed: Tableau's static
+      thumbnail exposes Adarsh's phone number (the `4_3.png` crop) and the full-page
+      variant renders with broken/missing text. Adarsh chose a text/icon callout
+      card instead (Projects section) — see docs/PROGRESS_LOG.md
+- [x] (CC) Jira representation per decision — CONTENT.md §4 default (omit live link,
+      narrative only) already satisfied via the "Agile delivery" skill entry from
+      Phase 0; no new work needed, not explicitly reconfirmed by Adarsh but no
+      change requested either
+- [x] (CC) Command palette (⌘K) wired to sections + links — `cmdk` via shadcn's
+      `command` component; sections + résumé/GitHub/LinkedIn/Tableau/email
 
 ## Phase 5 — AI assistant
-- [ ] (CC) `scripts/build-knowledge.ts` compiles content → knowledge
-- [ ] (CC) `api/chat.ts` serverless endpoint (streaming, rate-limited)
-- [ ] (CC) LLM provider adapter (`lib/llm.ts`)
-- [ ] (CC) ChatWidget UI (launcher, streaming, suggested prompts, fallback)
-- [ ] (CC) Grounding + safety tests (15 sample questions)
-- [ ] (A) Set `ANTHROPIC_API_KEY` in Vercel env
+
+- [x] (CC) `scripts/build-knowledge.ts` compiles content → knowledge —
+      outputs `src/content/knowledge.generated.ts` (a `.ts` export, not raw
+      `.md`, so both the Vite build and the Vercel Edge Function bundler can
+      import it directly with no raw-text loader); wired into `prebuild`
+- [x] (CC) `api/chat.ts` serverless endpoint (streaming, rate-limited) —
+      Vercel Edge Function; validates input (role/length/turn-count),
+      best-effort in-memory per-IP rate limit (`api/_lib/rateLimit.ts`,
+      ~10 msgs/min), never leaks the key or system prompt, friendly fallback
+      on provider errors
+- [x] (CC) LLM provider adapter (`api/_lib/llm.ts`) — **provider is OpenAI
+      `gpt-4o-mini`, not Anthropic Claude** (Adarsh's explicit call, made
+      after weighing cost/latency for this small grounded-Q&A task on a
+      public endpoint — see ARCHITECTURE.md ADR-004). Isolated behind this
+      one file per CLAUDE.md §3's swappability requirement.
+- [x] (CC) ChatWidget UI (launcher, streaming, suggested prompts, fallback) —
+      `src/components/chat/{ChatLauncher,ChatPanel,ChatMessage}.tsx` +
+      `src/hooks/useChat.ts`; code-split (ChatPanel lazy-loads on first
+      open); wired into `App.tsx`, `SiteNav`, and `CommandPalette` via a
+      tiny window-event bus (`src/lib/chatBus.ts`)
+- [x] (CC) Grounding + safety tests (15 sample questions) — `docs/chatbot-eval.md`
+      + `pnpm eval:chatbot` (`scripts/eval-chatbot.ts`); **not yet run**, needs
+      a real `OPENAI_API_KEY` in `.env.local` (none available in this
+      environment) — run once a key is available, before calling Phase 5 done
+- [ ] (A) Set `OPENAI_API_KEY` in Vercel env (renamed from `ANTHROPIC_API_KEY`
+      per the provider switch above)
 
 ## Phase 6 — Polish, a11y, SEO, performance
-- [ ] (CC) Print stylesheet → clean one-page PDF
-- [ ] (CC) OG/Twitter meta + generated OG image + JSON-LD Person
-- [ ] (CC) Favicon set, sitemap, robots
-- [ ] (CC) Accessibility pass (focus, aria, contrast, reduced-motion, alt)
-- [ ] (CC) Lighthouse tuning to targets (≥95/100/100/100 mobile)
+
+- [x] (CC) Print stylesheet → clean one-page PDF — `@media print` in
+      globals.css: hides nav/chat/dialogs, forces light-theme tokens
+      regardless of active theme, spells out external links as text
+- [x] (CC) OG/Twitter meta + generated OG image + JSON-LD Person — meta tags
+      + JSON-LD hardcoded in index.html (duplicated from src/content, same
+      tradeoff as .env.example — see its comment); og-image.png (1200x630)
+      rendered via chrome-devtools screenshot of an HTML template, not a
+      design tool, since none was available
+- [x] (CC) Favicon set, sitemap, robots — favicon-{16,32}x{16,32}.png,
+      apple-touch-icon.png, icon-512.png (all rendered from favicon.svg),
+      site.webmanifest, robots.txt, sitemap.xml. Also added llms.txt
+      (not originally scoped, but a Lighthouse "agentic-browsing" audit
+      flagged its absence — cheap to add and on-brand for an AI-forward site)
+- [x] (CC) Accessibility pass (focus, aria, contrast, reduced-motion, alt) —
+      found and fixed a real bug: closing the command palette or chat panel
+      via Escape dropped focus to `<body>` instead of restoring it, because
+      both triggers are plain `<button>`s (not Radix `Trigger` components),
+      so Radix's auto-restore never engaged. Fixed with a manually-tracked
+      "previously focused element" ref + `requestAnimationFrame` restore in
+      both CommandPalette.tsx and ChatLauncher.tsx. Verified via real
+      keyboard focus (not synthetic clicks) in Chrome DevTools.
+- [x] (CC) Lighthouse tuning to targets (≥95/100/100/100 mobile) —
+      Accessibility/Best Practices/SEO all **100**. Performance: found the
+      hero's LCP text was gated behind a JS-triggered `whileInView` fade-in
+      (Reveal) that never should have been there (hero is visible on load,
+      not scrolled-to) — removed it, then went further and moved Framer
+      Motion off the critical bundle entirely (it's only needed for
+      below-the-fold `Reveal` usage), lazy-loading everything after the
+      hero via `BelowFoldSections`/`LazyFooter`. Cut the critical-path JS
+      from 125KB→76KB gzip and LCP from 3.26s→2.03s under Lighthouse's
+      mobile throttling profile (Slow 4G + 4x CPU) — no numeric Performance
+      score available from the tool used (excludes performance from its
+      category scores; only raw trace metrics), but LCP/CLS are both
+      comfortably in "Good" Core Web Vitals territory now.
 
 ## Phase 7 — Launch
+
 - [ ] (A) Custom domain on Vercel
-- [ ] (CC) Prod env vars set; final deploy
-- [ ] (A) Proofread all content; remove every TODO(content)
-- [ ] (CC) Finalize README
+- [ ] (CC) Prod env vars set; final deploy — blocked on a decision from
+      Adarsh: see docs/PROGRESS_LOG.md — the `adarsh` branch has never been
+      pushed to GitHub (all Phase 0-6 work is local-only commits), and the
+      Vercel project isn't git-connected (deploys so far were manual
+      file-tree uploads). Need direction on push/PR strategy before a real
+      "final deploy" makes sense.
+- [x] (CC) Fixed a leftover Phase 6 item found while reviewing docs/CONTENT.md:
+      `public/avatar.jpg` was an unoptimized 4912×7360 1.5MB DSLR export;
+      center-cropped to 400×400 and re-encoded as JPEG — now 19KB (98.7%
+      smaller), same visual crop
+- [ ] (A) Proofread all content; remove every TODO(content) — none found as
+      live markers in `src/content/*`; only historical/instructional
+      mentions remain in docs
+- [x] (CC) Finalize README — rewritten to match current reality (OpenAI not
+      Anthropic, actual repo structure incl. api/_lib and chat components,
+      correct env var list, `pnpm eval:chatbot` usage)
 - [ ] (A) Share the URL 🎉
 - [ ] (CC/A) (Optional) privacy-friendly analytics
 
 ---
 
 ## Backlog / nice-to-have (not scheduled)
+
 - [ ] Case-study deep pages (would trigger RAG reconsideration)
 - [ ] Multi-language toggle
 - [ ] Visitor "download vCard" button

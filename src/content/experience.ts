@@ -2,62 +2,80 @@ import type { Experience } from "./types";
 
 /**
  * experience.ts — roles in reverse-chronological order (newest first).
- * One entry per role. Cover: Finance, Energy, Background Verification,
- * Investment Banking. Fill from your résumé PDF. See docs/CONTENT.md §3 for
- * how to write good highlight bullets (action → measurable impact → tech).
+ * Dates and industry tags sourced from TimeLine.xlsx (exact start/end dates
+ * from the underlying Tableau data source); bullets condensed from the
+ * Tableau visual resume's per-role descriptions. See docs/PROGRESS_LOG.md
+ * 2026-07-30 for provenance.
  */
 export const experience: Experience[] = [
   {
-    company: "TODO(content): company", // Investment Banking (current)
-    role: "TODO(content): title",
+    company: "Wells Fargo",
+    role: "Data Engineer",
     domain: "Investment Banking",
-    start: "YYYY-MM",
+    start: "2020-08",
     end: "Present",
-    location: "",
-    summary: "TODO(content): one-line context about the mandate/team.",
+    summary:
+      "Capital Markets Division — Dodd-Frank Act compliance and Section " +
+      "165(d) living-will regulatory reporting.",
     highlights: [
-      "TODO(content): achievement — what you did, the impact, and the tech.",
-      "TODO(content): achievement bullet 2.",
+      "Built and maintain ETL pipelines (Informatica, Python, Spark, Hadoop) feeding Dodd-Frank Act Section 165(d) living-will submissions, ensuring timely, accurate Federal regulatory reporting.",
+      "Use Tableau for regulatory Fed submission reporting and Hadoop/Spark for auditing and reporting data storage; GitHub Copilot for day-to-day development.",
+      "Presented on Spark Streaming at a Technology Spotlight session to Wells Fargo India; completed the Markets College Training derivatives certification (a Capital Markets Initiative).",
+      "Built hackathon projects on Azure DevOps (2023), Google Cloud Vertex AI (2024), and OpenShift Container Platform (2025).",
     ],
-    tech: ["TODO", "SQL", "Python"], // TODO(content): real tech chips
+    tech: ["Python", "Tableau", "Informatica", "Spark", "Hadoop", "SQL Server", "GitHub Copilot"],
   },
   {
-    company: "TODO(content): company", // Background Verification
-    role: "TODO(content): title",
+    company: "Encora Innovation Labs (client: Accurate Background)",
+    role: "Senior Data Analyst",
     domain: "Background Verification",
-    start: "YYYY-MM",
-    end: "YYYY-MM",
-    location: "",
+    start: "2017-01",
+    end: "2020-08",
+    summary:
+      "IT Business Intelligence & Analytics team for Accurate Background, " +
+      "serving enterprise clients including Amazon, Uber, and Starbucks.",
     highlights: [
-      "TODO(content): achievement bullet.",
-      "TODO(content): achievement bullet.",
+      "Cleansed and transformed background-verification data, applying business logic so client reporting for Amazon, Uber, and Starbucks stayed accurate and audit-ready.",
+      "Combined AWS Redshift with Tableau to deliver real-time reporting, replacing slower batch-based dashboards.",
+      "Owned BI delivery end-to-end — from requirements through dimensional modeling (SSIS/SSRS) to post-launch support.",
     ],
-    tech: ["ETL", "SQL", "Tableau"],
+    tech: [
+      "Microsoft BI (SSIS, SSRS)",
+      "SQL Server",
+      "Tableau",
+      "MongoDB",
+      "AWS Redshift",
+      "AWS DMS",
+      "Dimensional Modelling",
+    ],
   },
   {
-    company: "TODO(content): company", // Energy
-    role: "TODO(content): title",
+    company: "Accenture (client: Shell)",
+    role: "Senior Data Analyst",
     domain: "Energy",
-    start: "YYYY-MM",
-    end: "YYYY-MM",
-    location: "",
+    start: "2013-04",
+    end: "2016-12",
+    summary:
+      "Data specialist on Shell's IT team, supporting oil & gas exploration " +
+      "reporting (directional survey, facility monitoring).",
     highlights: [
-      "TODO(content): achievement bullet.",
-      "TODO(content): achievement bullet.",
+      "Cleaned and prepared directional-survey and facility-monitoring data for Shell's energy operations using SSIS, SQL Server, and Oracle.",
+      "Led project initiation — requirements gathering, feasibility analysis, stakeholder alignment — and managed the handover to production support.",
+      "Gained hands-on exposure to SAP HANA and SAP BODS for enhanced data processing.",
     ],
-    tech: ["ETL", "SQL", "BI"],
+    tech: ["SSIS", "SQL Server", "Oracle", "SAP BODS", "SAP HANA"],
   },
   {
-    company: "TODO(content): company", // Finance
-    role: "TODO(content): title",
+    company: "Accenture",
+    role: "Senior Data Analyst",
     domain: "Finance",
-    start: "YYYY-MM",
-    end: "YYYY-MM",
-    location: "",
+    start: "2010-11",
+    end: "2013-04",
+    summary: "Financial reporting and risk analysis for Accenture's top 100 clients.",
     highlights: [
-      "TODO(content): achievement bullet.",
-      "TODO(content): achievement bullet.",
+      "Led ETL development (SSIS, SQL Server) for financial reporting and risk analysis serving Accenture's top 100 clients.",
+      "Contributed to a firm-wide certification initiative, managing delivery-lead and solution-architect program content.",
     ],
-    tech: ["ETL", "SQL"],
+    tech: ["C#", "SSIS", "SQL Server", "MS Access"],
   },
 ];

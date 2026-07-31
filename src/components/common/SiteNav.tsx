@@ -1,0 +1,79 @@
+import { useState } from "react";
+import { Menu, X, Sparkles } from "lucide-react";
+import { content } from "@/content";
+import { cn } from "@/lib/utils";
+import { SECTION_LINKS } from "@/lib/nav";
+import { requestOpenChat } from "@/lib/chatBus";
+
+export function SiteNav() {
+  const [open, setOpen] = useState(false);
+  const firstName = content.profile.name.split(" ")[0];
+
+  return (
+    <div className="relative flex items-center gap-6">
+      <a href="#hero" className="font-semibold" onClick={() => setOpen(false)}>
+        {firstName}
+      </a>
+
+      <nav className="hidden sm:flex items-center gap-6">
+        {SECTION_LINKS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+          >
+            {item.label}
+          </a>
+        ))}
+        <button
+          type="button"
+          onClick={requestOpenChat}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+        >
+          <Sparkles aria-hidden="true" className="size-3.5" />
+          Ask my AI
+        </button>
+      </nav>
+
+      <button
+        type="button"
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex size-8 items-center justify-center rounded-md text-muted-foreground hover:text-foreground sm:hidden"
+      >
+        {open ? <X className="size-5" /> : <Menu className="size-5" />}
+      </button>
+
+      {open && (
+        <nav
+          className={cn(
+            "absolute top-full left-0 mt-2 flex w-48 flex-col gap-1 rounded-lg border border-border bg-card p-2 shadow-md sm:hidden",
+          )}
+        >
+          {SECTION_LINKS.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              {item.label}
+            </a>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              requestOpenChat();
+            }}
+            className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-left text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+          >
+            <Sparkles aria-hidden="true" className="size-3.5" />
+            Ask my AI
+          </button>
+        </nav>
+      )}
+    </div>
+  );
+}

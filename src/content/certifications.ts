@@ -28,7 +28,8 @@ export const certifications: Certification[] = [
     name: "AWS Certified Data Analytics – Specialty",
     issuer: "Amazon Web Services (AWS)",
     year: "2023",
-    credentialUrl: "https://www.credly.com/badges/0119fb9b-bbf2-42f9-94f4-ed8778990efe/linked_in_profile",
+    credentialUrl:
+      "https://www.credly.com/badges/0119fb9b-bbf2-42f9-94f4-ed8778990efe/linked_in_profile",
   },
   {
     name: "Databricks Generative AI Fundamentals",
@@ -40,7 +41,8 @@ export const certifications: Certification[] = [
     name: "AWS Certified Developer – Associate",
     issuer: "Amazon Web Services (AWS)",
     year: "2023",
-    credentialUrl: "https://www.credly.com/badges/81601e6a-764f-4847-9a18-4744d85440a2/linked_in_profile",
+    credentialUrl:
+      "https://www.credly.com/badges/81601e6a-764f-4847-9a18-4744d85440a2/linked_in_profile",
   },
   {
     name: "Google Certified Associate Cloud Engineer",
@@ -52,12 +54,14 @@ export const certifications: Certification[] = [
     name: "Microsoft Certified: Azure Fundamentals",
     issuer: "Microsoft",
     year: "2022",
-    credentialUrl: "https://www.credly.com/badges/fa392953-23b2-4ff0-b680-a9cd86e3fc1f/linked_in_profile",
+    credentialUrl:
+      "https://www.credly.com/badges/fa392953-23b2-4ff0-b680-a9cd86e3fc1f/linked_in_profile",
   },
   {
     name: "Tableau Desktop Specialist",
     issuer: "Tableau (Salesforce)",
     year: "2021",
-    credentialUrl: "https://www.credly.com/badges/0f0c9545-ad84-45e2-9725-2c465e19edd5/linked_in_profile",
+    credentialUrl:
+      "https://www.credly.com/badges/0f0c9545-ad84-45e2-9725-2c465e19edd5/linked_in_profile",
   },
 ];

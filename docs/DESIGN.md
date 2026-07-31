@@ -29,9 +29,12 @@ Use HSL CSS variables so themes swap by changing the variable set, not classes.
 ```
 Neutrals (light):  background very-light warm gray; foreground near-black.
 Neutrals (dark):   background near-black (not pure #000); foreground off-white.
-Accent:            ONE color — pick during Phase 2 with Adarsh (default: a
-                   confident indigo/teal). Provide accent, accent-foreground,
-                   and a subtle accent-muted for backgrounds.
+Accent:            #e3ac14 (gold) — confirmed 2026-07-30, carried over from
+                   Adarsh's existing Tableau Public visual resume for brand
+                   continuity. Provide accent, accent-foreground, and a
+                   subtle accent-muted for backgrounds; verify AA contrast
+                   against both light and dark neutrals in Phase 2 — gold on
+                   white in particular will need a darkened variant for text.
 Semantic:          border, muted, muted-foreground, card, card-foreground,
                    ring (focus). Mirror shadcn's token names for drop-in use.
 ```
@@ -46,13 +49,20 @@ color alone to convey meaning (pair with icon/label). Verify both themes.
 
 ## 3. Typography
 
-- **Two families max:** one for headings (a characterful but professional sans
-  or a refined serif for the name), one for body/UI (a clean neutral sans, e.g.
-  Inter). A mono face only for code/tech chips if desired.
-- **Type scale (fluid with `clamp`):** display / h1 / h2 / h3 / body-lg / body /
-  small / caption. Keep line-length ~60–75ch for prose.
+- **One family: Geist Variable** (shadcn's Nova preset default; `--font-sans`
+  and `--font-heading` both point to it — see docs/PROGRESS_LOG.md Phase 2).
+  Geist reads cleanly at both display and body sizes, so a second family
+  wasn't worth the extra font-load weight. Revisit only if a section (e.g. a
+  serif treatment for the name) needs real differentiation.
+- **Type scale (fluid with `clamp`):** `text-display` / `text-h1` / `text-h2` /
+  `text-h3` / `text-body-lg` are custom Tailwind v4 theme tokens in
+  `globals.css`; `body`/`small`/`caption` use Tailwind's stock `text-base` /
+  `text-sm` / `text-xs`. See them all live at `/kitchen-sink` (dev only). Keep
+  line-length ~60–75ch for prose.
 - **Hierarchy via size + weight + color**, not underlines or all-caps walls.
-- Self-host fonts or use `font-display: swap`; preload the hero font.
+- Geist is loaded via `@fontsource-variable/geist` (bundled, self-hosted) —
+  no `font-display: swap` config needed, Fontsource ships `font-display: swap`
+  by default.
 
 ---
 
@@ -88,7 +98,7 @@ theme toggle + "Ask AI"). Section order:
 
 1. **Hero** — big name + role; one-sentence value prop; domain pills
    (Finance · Energy · Background Verification · Investment Banking); CTAs:
-   *Download résumé (PDF)*, *Ask my AI*, *Contact*. Optional headshot.
+   _Download résumé (PDF)_, _Ask my AI_, _Contact_. Optional headshot.
 2. **About** — short narrative + a **stat row** (years of experience, domains,
    core tools, certifications count).
 3. **Experience** — vertical **timeline**; each entry: role, company, dates,
