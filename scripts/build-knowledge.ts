@@ -23,7 +23,7 @@ function formatDate(value: string | "Present"): string {
 }
 
 function buildMarkdown(): string {
-  const { profile, experience, skills, projects, certifications, links } = content;
+  const { profile, experience, skills, projects, agenticAI, certifications, links } = content;
 
   const lines: string[] = [];
 
@@ -63,9 +63,17 @@ function buildMarkdown(): string {
     lines.push(skillList);
   }
 
-  lines.push("\n## Projects");
+  lines.push("\n## Personal Projects");
+  lines.push(
+    "Built independently, outside of any employer, as hands-on exploration beyond the day job.",
+  );
   for (const project of projects) {
-    lines.push(`\n### ${project.title}${project.featured ? " (featured)" : ""}`);
+    const statusTags = [
+      project.featured && "featured",
+      project.inProgress && "in progress",
+      project.privateRepo && "private repo — no public link",
+    ].filter(Boolean);
+    lines.push(`\n### ${project.title}${statusTags.length ? ` (${statusTags.join(", ")})` : ""}`);
     lines.push(project.blurb);
     lines.push(`Tech: ${project.tech.join(", ")}`);
     if (project.domain) lines.push(`Domain: ${project.domain}`);
@@ -76,6 +84,17 @@ function buildMarkdown(): string {
     if (project.links.docs) linkParts.push(`Docs: ${project.links.docs}`);
     if (linkParts.length) lines.push(linkParts.join(" · "));
   }
+
+  lines.push("\n## Agentic AI");
+  lines.push(agenticAI.intro);
+  for (const group of agenticAI.groups) {
+    const itemList = group.items
+      .map((item) => (item.note ? `${item.name} (${item.note})` : item.name))
+      .join(", ");
+    lines.push(`\n### ${group.category}`);
+    lines.push(itemList);
+  }
+  if (agenticAI.pursuing) lines.push(`\n${agenticAI.pursuing}`);
 
   lines.push("\n## Certifications");
   for (const cert of certifications) {

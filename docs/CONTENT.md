@@ -59,8 +59,16 @@ export interface Project {
   domain?: Domain;
   links: { github?: string; demo?: string; tableau?: string; docs?: string };
   featured?: boolean;
+  inProgress?: boolean; // renders an "In Progress" badge
+  privateRepo?: boolean; // suppresses the link — see §4, same rule as Jira
   // filled at build from GitHub API:
   repoStats?: { stars: number; language: string; updated: string };
+}
+
+export interface AgenticAIContent {
+  intro: string; // 1-2 sentences, must tie back to real/verifiable work
+  groups: { category: string; items: { name: string; note?: string }[] }[];
+  pursuing?: string; // one-liner about an in-progress certification
 }
 
 export interface Certification {
@@ -114,13 +122,31 @@ Skills
 - [x] Anything beyond ETL/BI/DB/Python/AI to add? Cloud & DevOps (AWS/Azure/
       GCP/Docker) and Ways of Working (Agile) both populated with real data
 
-Projects
+Projects — renamed "Personal Projects" in the UI (eyebrow + a one-line
+description) to make clear these are independent work, not employer
+deliverables — see 2026-07-31 in PROGRESS_LOG.md.
 
 - [x] GitHub username + the repo to feature — FinSight AI, confirmed public at
       `github.com/AdarshMurali/FinSight-AI`, `featured: true`
 - [x] Short blurb + tech per project
+- [x] MarginMaestro (agentic margin-call automation platform) added,
+      `inProgress: true`, `privateRepo: true` — repo is private, so no public
+      link is rendered (same rule as Jira, see §4); description sourced from
+      the repo's own README
 - [ ] Any additional Tableau vizzes to showcase beyond the main resume viz —
       none identified yet; revisit if Adarsh publishes more
+
+Agentic AI (new section, added 2026-07-31 — see `src/content/agenticAI.ts`)
+
+- [x] Building-with-AI group: MCP, RAG pipelines (FinSight AI + MarginMaestro),
+      LLM agent orchestration
+- [x] AI-assisted development group: Claude Code, Claude Skills, Claude Code
+      plugins, GitHub Copilot, DBCode
+- [x] "Currently pursuing" one-liner: Claude Certified Architect (Foundations)
+- [ ] Confirm nothing else belongs here — Adarsh flagged prompt engineering,
+      vector DBs/embeddings, tool use, multi-agent orchestration, fine-tuning,
+      and other AI coding tools (Cursor, Windsurf, etc.) as candidates during
+      the planning discussion; none confirmed yet, so none were added
 
 Certifications
 
@@ -168,6 +194,12 @@ board or expose ticket data. Options, best first:
 
 Default: omit the live link; fold Jira into the "Ways of Working" skill cluster
 and experience narrative. Confirm with Adarsh before exposing anything.
+
+**Same rule applied again for MarginMaestro** (added 2026-07-31): its GitHub
+repo is private, so `Project.privateRepo: true` suppresses the link entirely
+(`Projects.tsx` renders a "Private repository" note with a lock icon instead
+of a dead link). This is now the general pattern for any private
+resource — never render a link a visitor can't actually open.
 
 ---
 
