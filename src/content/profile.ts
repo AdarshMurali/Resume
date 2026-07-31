@@ -9,14 +9,14 @@ export const profile: Profile = {
   name: "Adarsh Murali",
   headline: "Data Engineer, Capital Markets · Python · Big Data · Applied AI",
   valueProp:
-    "I build the ETL pipelines, Python-driven data engineering, and BI " +
-    "systems that keep regulatory reporting honest — now extending that " +
-    "rigor with big data tooling (Spark, Hadoop) and agentic AI for " +
-    "financial analysis.",
+    "I build ETL pipelines, Python-driven data engineering and API " +
+    "development, and BI systems that keep regulatory reporting honest " +
+    "in investment banking — paired with big data tooling like Spark and " +
+    "agentic AI for financial analysis.",
   location: "",
   summary:
-    "I'm a data engineer with 15+ years of experience across capital " +
-    "markets, energy, and background verification. At Wells Fargo's Capital " +
+    "I'm a data engineer with 15+ years of experience across investment " +
+    "banking, energy, and background verification. At Wells Fargo's Capital " +
     "Markets Division, I build ETL pipelines and BI systems supporting " +
     "Dodd-Frank Act compliance and Section 165(d) living-will regulatory " +
     "reporting. I'm increasingly applying Python and agentic AI to extend " +

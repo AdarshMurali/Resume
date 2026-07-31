@@ -54,4 +54,15 @@ export const projects: Project[] = [
     inProgress: true,
     privateRepo: true,
   },
+  {
+    title: "Kanban Studio — AI-Assisted Project Board",
+    blurb:
+      "A project-management MVP combining a drag-and-drop Kanban board with an AI chat " +
+      "assistant that can create, edit, and move cards on your behalf — a small end-to-end " +
+      "exploration of pairing a conversational agent with a real, stateful UI.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "FastAPI", "Python", "SQLite", "Docker"],
+    links: {
+      github: "https://github.com/AdarshMurali/Kanban_Studio",
+    },
+  },
 ];

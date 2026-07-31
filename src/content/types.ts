@@ -10,16 +10,21 @@
 
 export type Domain = "Finance" | "Energy" | "Background Verification" | "Investment Banking";
 
-/** Skill proficiency tier. 1 = familiar, 5 = expert. Optional — omit if unsure. */
-export type SkillLevel = 1 | 2 | 3 | 4 | 5;
+/**
+ * Skill proficiency tier. 1 = familiar, 5 = expert. Half-steps allowed for
+ * finer-grained self-assessment. Optional — omit if unsure.
+ */
+export type SkillLevel = 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4 | 4.5 | 5;
 
 export type SkillCategory =
   | "Data & ETL"
   | "BI & Visualization"
   | "Databases"
+  | "Streaming"
   | "Python & Engineering"
   | "AI / ML"
-  | "Cloud & DevOps"
+  | "Cloud"
+  | "DevOps"
   | "Ways of Working";
 
 export interface Stat {
