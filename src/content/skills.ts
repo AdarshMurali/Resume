@@ -20,7 +20,7 @@ export const skills: SkillCluster[] = [
     skills: [
       { name: "SQL Server", level: 4, note: "~8 yrs" },
       { name: "AWS Redshift", level: 3, note: "real-time reporting at Accurate Background" },
-      { name: "MongoDB", level: 3 },
+      { name: "NetApp S3", level: 1 },
     ],
   },
   {
@@ -28,15 +28,23 @@ export const skills: SkillCluster[] = [
     skills: [
       { name: "Informatica", level: 3, note: "~2 yrs" },
       { name: "Apache Spark", level: 3, note: "streaming & big data, ~1 yr" },
-      { name: "Hadoop", level: 2, note: "batch storage for audit/reporting" },
       { name: "SSIS", level: 4 },
+    ],
+  },
+  {
+    category: "Streaming",
+    skills: [
+      { name: "Apache Flink", level: 3, note: "FinSight AI real-time analytics" },
+      { name: "Spark Streaming", level: 3 },
+      { name: "Apache Kafka", level: 1, note: "streaming integration for FinSight AI and MarginMaestro" },
     ],
   },
   {
     category: "Python & Engineering",
     skills: [
-      { name: "Python", level: 3, note: "~2.5 yrs — pandas, Flask, NumPy, unit testing" },
+      { name: "Python", level: 3, note: "~4 yrs — data engineering & API development (pandas, Flask, FastAPI, NumPy), unit testing" },
       { name: "GitHub Copilot", level: 3, note: "~2 yrs, daily driver" },
+      { name: "Claude Code", note: "Daily driver — used to build this site" },
     ],
   },
   {
@@ -50,12 +58,22 @@ export const skills: SkillCluster[] = [
     ],
   },
   {
-    category: "Cloud & DevOps",
+    category: "Cloud",
     skills: [
-      { name: "AWS", level: 3, note: "~1 yr — Redshift, DMS" },
+      { name: "AWS", level: 3, note: "~2 yrs — Redshift, DMS" },
       { name: "Azure", level: 2, note: "~0.5 yr — DevOps Hackathon 2023" },
       { name: "Google Cloud", level: 2, note: "~0.5 yr — Vertex AI Hackathon 2024" },
-      { name: "Docker", level: 2, note: "~0.5 yr" },
+    ],
+  },
+  {
+    category: "DevOps",
+    skills: [
+      { name: "Jenkins", level: 2.5, note: "~4 yrs" },
+      { name: "UrbanCode Deploy", level: 2.5, note: "~4 yrs" },
+      { name: "Docker", level: 2, note: "~1 yr" },
+      { name: "GitHub Actions", level: 2.5, note: "~1 yr" },
+      { name: "SonarQube", level: 2, note: "~2 yrs" },
+      { name: "Harness", level: 1, note: "~1 yr" },
     ],
   },
   {
