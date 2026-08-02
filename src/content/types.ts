@@ -25,6 +25,7 @@ export type SkillCategory =
   | "AI / ML"
   | "Cloud"
   | "DevOps"
+  | "ITSM & Change Management"
   | "Ways of Working";
 
 export interface Stat {
