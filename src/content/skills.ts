@@ -69,11 +69,18 @@ export const skills: SkillCluster[] = [
     category: "DevOps",
     skills: [
       { name: "Jenkins", level: 2.5, note: "~4 yrs" },
-      { name: "UrbanCode Deploy", level: 2.5, note: "~4 yrs" },
       { name: "Docker", level: 2, note: "~1 yr" },
       { name: "GitHub Actions", level: 2.5, note: "~1 yr" },
       { name: "SonarQube", level: 2, note: "~2 yrs" },
       { name: "Harness", level: 1, note: "~1 yr" },
+    ],
+  },
+  {
+    category: "ITSM & Change Management",
+    skills: [
+      { name: "ServiceNow", level: 2, note: "~2 yrs — change management" },
+      { name: "Jira", level: 3, note: "~5 yrs — task creation & tracking" },
+      { name: "UrbanCode Deploy", level: 2.5, note: "~4 yrs — release/deployment governance" },
     ],
   },
   {
