@@ -5,6 +5,8 @@ import type { SkillCluster } from "./types";
  * Levels and years-of-experience notes sourced from the underlying Tableau
  * data source (Tools.csv skill-level chart + Tools_Used_Daily.xlsx usage
  * split). See docs/PROGRESS_LOG.md 2026-07-30 for provenance.
+ *
+ * Within each cluster, keep `skills` sorted by `level` descending.
  */
 export const skills: SkillCluster[] = [
   {
@@ -26,9 +28,9 @@ export const skills: SkillCluster[] = [
   {
     category: "Data & ETL",
     skills: [
+      { name: "SSIS", level: 4 },
       { name: "Informatica", level: 3, note: "~2 yrs" },
       { name: "Apache Spark", level: 3, note: "streaming & big data, ~1 yr" },
-      { name: "SSIS", level: 4 },
     ],
   },
   {
@@ -53,8 +55,8 @@ export const skills: SkillCluster[] = [
         level: 3,
         note: "hands-on via FinSight AI — GPT-4o function calling, RAG (ChromaDB)",
       },
-      { name: "Claude Code", level: 2, note: "Daily driver — used to build this site" },
       { name: "GitHub Copilot", level: 3, note: "~2 yrs, daily driver" },
+      { name: "Claude Code", level: 2, note: "Daily driver — used to build this site" },
       { name: "Cursor", level: 2 },
     ],
   },
@@ -70,8 +72,8 @@ export const skills: SkillCluster[] = [
     category: "DevOps",
     skills: [
       { name: "Jenkins", level: 2.5, note: "~4 yrs" },
-      { name: "Docker", level: 2, note: "~1 yr" },
       { name: "GitHub Actions", level: 2.5, note: "~1 yr" },
+      { name: "Docker", level: 2, note: "~1 yr" },
       { name: "SonarQube", level: 2, note: "~2 yrs" },
       { name: "Harness", level: 2, note: "~1 yr" },
     ],
@@ -79,9 +81,9 @@ export const skills: SkillCluster[] = [
   {
     category: "ITSM & Change Management",
     skills: [
-      { name: "ServiceNow", level: 2, note: "~2 yrs — change management" },
       { name: "Jira", level: 3, note: "~5 yrs — task creation & tracking" },
       { name: "UrbanCode Deploy", level: 2.5, note: "~4 yrs — release/deployment governance" },
+      { name: "ServiceNow", level: 2, note: "~2 yrs — change management" },
     ],
   },
   {
