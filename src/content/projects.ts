@@ -54,6 +54,7 @@ export const projects: Project[] = [
       github: "https://github.com/AdarshMurali/MarginMaestro",
       demo: "https://marginmaestro.vercel.app/",
     },
+    featured: true,
   },
   {
     title: "Kanban Studio — AI-Assisted Project Board",
