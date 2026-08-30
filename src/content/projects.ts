@@ -50,9 +50,10 @@ export const projects: Project[] = [
       "CI/CD",
     ],
     domain: "Investment Banking",
-    links: {},
-    inProgress: true,
-    privateRepo: true,
+    links: {
+      github: "https://github.com/AdarshMurali/MarginMaestro",
+      demo: "https://marginmaestro.vercel.app/",
+    },
   },
   {
     title: "Kanban Studio — AI-Assisted Project Board",
