@@ -12,7 +12,7 @@ export const skills: SkillCluster[] = [
   {
     category: "BI & Visualization",
     skills: [
-      { name: "Tableau", level: 4, note: "8+ certs; ~6 yrs as primary BI tool" },
+      { name: "Tableau", level: 4, note: "8+ certs; 6+ years as primary BI tool" },
       { name: "Microsoft BI (SSIS/SSRS)", level: 4, note: "~6 yrs" },
       { name: "Dashboard design", level: 4 },
     ],
