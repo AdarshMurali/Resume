@@ -10,7 +10,7 @@ export const skills: SkillCluster[] = [
   {
     category: "BI & Visualization",
     skills: [
-      { name: "Tableau", level: 4, note: "8+ certs; ~4 yrs as primary BI tool" },
+      { name: "Tableau", level: 4, note: "8+ certs; ~6 yrs as primary BI tool" },
       { name: "Microsoft BI (SSIS/SSRS)", level: 4, note: "~6 yrs" },
       { name: "Dashboard design", level: 4 },
     ],
@@ -43,18 +43,19 @@ export const skills: SkillCluster[] = [
     category: "Python & Engineering",
     skills: [
       { name: "Python", level: 3, note: "~4 yrs — data engineering & API development (pandas, Flask, FastAPI, NumPy), unit testing" },
-      { name: "GitHub Copilot", level: 3, note: "~2 yrs, daily driver" },
-      { name: "Claude Code", note: "Daily driver — used to build this site" },
     ],
   },
   {
-    category: "AI / ML",
+    category: "Agentic AI",
     skills: [
       {
         name: "Applied AI / agentic tooling",
         level: 3,
         note: "hands-on via FinSight AI — GPT-4o function calling, RAG (ChromaDB)",
       },
+      { name: "Claude Code", level: 2, note: "Daily driver — used to build this site" },
+      { name: "GitHub Copilot", level: 3, note: "~2 yrs, daily driver" },
+      { name: "Cursor", level: 2 },
     ],
   },
   {

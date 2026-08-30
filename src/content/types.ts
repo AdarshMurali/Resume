@@ -22,7 +22,7 @@ export type SkillCategory =
   | "Databases"
   | "Streaming"
   | "Python & Engineering"
-  | "AI / ML"
+  | "Agentic AI"
   | "Cloud"
   | "DevOps"
   | "ITSM & Change Management"
