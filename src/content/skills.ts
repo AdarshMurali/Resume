@@ -60,9 +60,9 @@ export const skills: SkillCluster[] = [
   {
     category: "Cloud",
     skills: [
-      { name: "AWS", level: 3, note: "~2 yrs — Redshift, DMS" },
-      { name: "Azure", level: 2, note: "~0.5 yr — DevOps Hackathon 2023" },
-      { name: "Google Cloud", level: 2, note: "~0.5 yr — Vertex AI Hackathon 2024" },
+      { name: "AWS", level: 3, note: "~2 yrs — IDBI Hackathon 2026" },
+      { name: "Azure", level: 2, note: "~1 yr — DevOps Hackathon 2023" },
+      { name: "Google Cloud", level: 2, note: "~1 yr — Vertex AI Hackathon 2024" },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const skills: SkillCluster[] = [
       { name: "Docker", level: 2, note: "~1 yr" },
       { name: "GitHub Actions", level: 2.5, note: "~1 yr" },
       { name: "SonarQube", level: 2, note: "~2 yrs" },
-      { name: "Harness", level: 1, note: "~1 yr" },
+      { name: "Harness", level: 2, note: "~1 yr" },
     ],
   },
   {
