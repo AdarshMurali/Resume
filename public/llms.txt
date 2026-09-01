@@ -18,7 +18,7 @@ This is a single-page interactive résumé. All content on the page (experience,
 
 ## Contact
 
-- LinkedIn: https://www.linkedin.com/in/adarsh-murali-93252450/
+- LinkedIn: https://www.linkedin.com/in/adarshmurali-ai/
 - GitHub: https://github.com/AdarshMurali/
 - Email: adarsh.5.88@gmail.com
 
