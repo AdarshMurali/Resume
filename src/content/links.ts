@@ -7,7 +7,7 @@ import type { Links } from "./types";
  * instead. See docs/CONTENT.md §4.
  */
 export const links: Links = {
-  linkedin: "https://www.linkedin.com/in/adarsh-murali-93252450/",
+  linkedin: "https://www.linkedin.com/in/adarshmurali-ai/",
   github: "https://github.com/AdarshMurali/",
   tableauPublic:
     "https://public.tableau.com/app/profile/adarsh.m5164/viz/AdarshMuraliResume2026/AdarshResume",
