@@ -64,6 +64,38 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    title: "TradeLens — AWS Spark Trade Surveillance Pipeline",
+    blurb:
+      "An end-to-end big data pipeline on AWS that processes 5M+ trade/order events " +
+      "through Apache Spark (PySpark) to generate market analytics (VWAP, volatility, " +
+      "spread) and surveillance alerts detecting spoofing, wash trading, and layering, " +
+      "achieving 95–100% precision/recall against ground-truth abuse patterns. Built on " +
+      "a bronze/silver/gold Delta Lake medallion lakehouse on S3 with advanced Spark " +
+      "techniques — window functions, self-joins, broadcast joins, skew handling via key " +
+      "salting, Pandas UDFs, and SCD Type 2 — containerized with Docker and deployed on " +
+      "AWS EMR Serverless with full CI/CD via GitHub Actions, serving dual layers through " +
+      "Amazon Athena and Redshift Serverless with Tableau dashboards, scaling to zero cost when idle.",
+    tech: [
+      "AWS",
+      "Apache Spark",
+      "PySpark",
+      "Delta Lake",
+      "AWS EMR Serverless",
+      "AWS S3",
+      "Amazon Athena",
+      "Redshift Serverless",
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "Tableau",
+    ],
+    domain: "Investment Banking",
+    links: {
+      github: "https://github.com/AdarshMurali/TradeLens",
+    },
+    featured: true,
+  },
+  {
     title: "Kanban Studio — AI-Assisted Project Board",
     blurb:
       "A project-management MVP combining a drag-and-drop Kanban board with an AI chat " +
