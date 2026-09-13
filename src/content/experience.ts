@@ -18,10 +18,11 @@ export const experience: Experience[] = [
       "Capital Markets Division — Dodd-Frank Act compliance and Section " +
       "165(d) living-will regulatory reporting.",
     highlights: [
-      "Built and maintain ETL pipelines (Informatica, Python, Spark, Hadoop) feeding Dodd-Frank Act Section 165(d) living-will submissions, ensuring timely, accurate Federal regulatory reporting.",
+      "Built and maintain ETL pipelines (Informatica, Python, Spark, Hadoop) feeding Dodd-Frank Act Section 165(d) living-will submissions for the Capital Markets Division, ensuring timely, accurate Federal regulatory reporting; also support API development alongside the core data pipeline work.",
+      "Support stress-testing cycles, RLEN wind-down runs, and scheduled batch/tool runs feeding downstream regulatory and audit reporting workflows.",
       "Use Tableau for regulatory Fed submission reporting and Hadoop/Spark for auditing and reporting data storage; GitHub Copilot for day-to-day development.",
-      "Presented on Spark Streaming at a Technology Spotlight session to Wells Fargo India; completed the Markets College Training derivatives certification (a Capital Markets Initiative).",
-      "Built hackathon projects on Azure DevOps (2023), Google Cloud Vertex AI (2024), and OpenShift Container Platform (2025).",
+      "Presented on Spark Streaming at a Technology Spotlight session to Wells Fargo India; participated in and presented a session on prime brokerage, margin call mechanics, interest rate dynamics, and real-time stream processing in capital markets (a Capital Markets Initiative).",
+      "Built hackathon projects: a digital portfolio application on Azure Pipelines (2023), Google Cloud Vertex AI (2024), and OpenShift Container Platform (2025).",
     ],
     tech: ["Python", "Tableau", "Informatica", "Spark", "Hadoop", "SQL Server", "GitHub Copilot"],
   },
